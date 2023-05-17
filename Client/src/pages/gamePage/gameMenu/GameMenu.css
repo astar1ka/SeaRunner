@@ -1,0 +1,11 @@
+.gameMenu_window{
+    position: absolute;
+    z-index: 20;
+    bottom: 0vh;
+    right: 0vw;
+    height: 6vh;
+    border: 5px solid rgb(117, 86, 13);
+    background-color: rgba(105, 91, 21, 0.7);
+    width: 18vh;
+    display: flex;
+}

@@ -1,0 +1,11 @@
+.--messageName{
+    font-size: 2.2vh;
+    font-style: italic;
+    color: rgb(228, 117, 13);
+
+}
+
+.--message-text{
+    font-size: 1.7vh;
+    color: white;
+}

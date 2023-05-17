@@ -1,0 +1,52 @@
+.TownInterface{
+    height: 100vh;
+    max-height: 100vh;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+.TownBackground{
+    position: absolute;
+    z-index: -5;
+    height: 100%;
+    width: 100%;
+    max-height: 100vh;
+    background-image: url("../../../../source/background/town.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.TownManage{
+    position: relative;
+    right: 5vw;
+    width: 20vw;
+    min-width: 300px;
+    height: 100vh;
+    background:  rgba(105, 91, 21, 0.7);
+    border: 0.2vw solid rgba(255,255,255,0.5);
+    box-shadow: 0 0.2vw 0.8vw rgb(0, 0, 0);
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.ManageButton{
+    position: relative;
+    width: 80%;
+    height: 5vh;
+    background:  rgb(105, 91, 21);
+    border-radius: 10px;
+    cursor: pointer;
+    color: black;
+    font-size: 20px;
+    text-align: center;
+    border: none;
+    transition: 0.5s;
+    margin-top: 2vh;
+    color: white;
+}
+
+.--blur{
+    filter:blur(5px)
+}

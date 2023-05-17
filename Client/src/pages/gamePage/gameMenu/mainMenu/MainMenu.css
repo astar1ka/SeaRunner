@@ -1,0 +1,10 @@
+.mainMenu{
+    position: absolute;
+    top: 30vh;
+    height: 40vh;
+    left: 40vw;
+    width: 20vw;
+    border: 5px solid rgb(117, 86, 13);
+    background-color: rgba(105, 91, 21, 0.7);
+    z-index: 100;
+}

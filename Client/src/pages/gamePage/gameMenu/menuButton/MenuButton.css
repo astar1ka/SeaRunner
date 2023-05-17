@@ -1,0 +1,19 @@
+.MenuButton{
+    position: relative;
+    width: 6vh;
+    height: 6vh;
+    z-index: 100;
+    background-size: 100% 100%;
+}
+
+.mainMenuButton{
+    background-image: url(./../../../../assets/mainMenuIcon.png);
+}
+
+.captainMenuButton{
+    background-image: url(./../../../../assets/captainMenuIcon.png);
+}
+
+.mapMenuButton{
+    background-image: url(./../../../../assets/mapMenuIcon.png);
+}

@@ -1,0 +1,8 @@
+.ShipDialog{
+    position: relative;
+    display: flex;
+}
+
+.NoneShip{
+    height: 10%;
+}
