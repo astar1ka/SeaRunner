@@ -98,8 +98,8 @@
     </tr>
     <tr>
         <td>3</td>
-        <td>---d>
-        <td>---d>
-        <td>---td>
+        <td>---</td>
+        <td>---</td>
+        <td>---</td>
     </tr>
 </table>
