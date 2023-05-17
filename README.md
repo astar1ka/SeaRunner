@@ -86,7 +86,7 @@
     <tr>
         <td>1</td>
         <td>Метод в Game для создания предмета по правилам в зависимости от type и добавление его в таблицу Items через DB.addRecord. Возвращает добавленный предмет
-        Название метода: addItem; вход: item_type_id: number из таблицы items_types; выход: object:TItem | null</td>
+        <br>Название метода: addItem; <br>вход: item_type_id: number из таблицы items_types; <br>выход: object:TItem | null</td>
         <td>[Andrey](https://github.com/1337m3rcy)</td>
         <td>В работе</td>
     </tr>
