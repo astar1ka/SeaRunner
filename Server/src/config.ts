@@ -9,8 +9,8 @@ export default class CONFIG {
         HOST: 'localhost',
         PORT: 5432,
         NAME: 'SeaRunner',
-        USER: 'postgres',
-        PASS: '111'
+        USER: 'm3rcy',
+        PASS: '1337'
     }
 
     public MESSAGES: TNameArray = {
