@@ -2,7 +2,6 @@
 
 Создание таблиц в PgAdmin:
 
-    ```console
     CREATE table users 
         (id bigint GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
         login text NOT NULL UNIQUE,
@@ -43,4 +42,3 @@
         speed bigint NOT NULL,
         attack_cooldown bigint NOT NULL,
         current_hp bigint)
-    ```
