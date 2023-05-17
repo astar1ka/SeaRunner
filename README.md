@@ -87,19 +87,19 @@
         <td>1</td>
         <td>Метод в Game для создания предмета по правилам в зависимости от type и добавление его в таблицу Items через DB.addRecord. Возвращает добавленный предмет
         Название метода: addItem; вход: item_type_id: number из таблицы items_types; выход: object:TItem | null</td>
-        <td>[Andrey](https://github.com/1337m3rcy)</td>
-        <td>В работе</td>
+        <td>---</td>
+        <td>---</td>
     </tr>
     <tr>
         <td>2</td>
         <td>Метод в DB для удаления по id, который возвращает true в случае успеха и false в случае ошибки</td>
-        <td></td>
-        <td></td>
+        <td>---</td>
+        <td>---</td>
     </tr>
     <tr>
-        <td>1</td>
-        <td>Метод в Game для создания предмета по правилам в зависимости от type и добавление его в таблицу Items через DB.addRecord. Возвращает добавленный предметНазвание метода: addItem; вход: item_type_id: number из таблицы items_types; выход: object:TItem | null</td>
-        <td>[Andrey](https://github.com/1337m3rcy)</td>
-        <td>В работе</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
     </tr>
 </table>
