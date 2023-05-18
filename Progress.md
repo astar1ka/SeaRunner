@@ -19,7 +19,7 @@
         <td><a href="https://github.com/1337m3rcy">Андрей</td>
         <td>Предмет</td>
         <td>Создаёт новый предмет</td>
-        <td>Метод в Game для создания предмета по правилам в зависимости от type и добавление его в таблицу Items через DB.addRecord. Возвращает добавленный предмет</td>
+        <td>Метод активной записи Item для создания предмета по правилам в зависимости от type и добавление его в таблицу Items через this.create Возвращает true или false</td>
         <td>addItem</td>
         <td>item_type_id: number из таблицы items_types</td>
         <td>boolean</td>
