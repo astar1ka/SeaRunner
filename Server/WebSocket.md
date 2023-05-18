@@ -26,29 +26,29 @@
             this.io.on('connection', (socket: Socket) => {})
         ```
 
-      1. Обработчик события `LOG_IN` для аутентификации пользователя
+        1. Обработчик события `LOG_IN` для аутентификации пользователя
 
-        ```javascript
-            socket.on(LOG_IN, (login: string, password: string, callback: Function) => this.login(socket.id, login, password, callback));
-        ```
+            ```javascript
+                socket.on(LOG_IN, (login: string, password: string, callback: Function) => this.login(socket.id, login, password, callback));
+            ```
 
-      2. Обработчик события `REGISTRATION` для регистрации пользователя
+        2. Обработчик события `REGISTRATION` для регистрации пользователя
 
-        ```javascript
-            socket.on(REGISTRATION, (login: string, password: string, name: string, cbRegistration: Function) => this.registration(socket, login, password, name, cbRegistration));
-        ```
+            ```javascript
+                socket.on(REGISTRATION, (login: string, password: string, name: string, cbRegistration: Function) => this.registration(socket, login, password, name, cbRegistration));
+            ```
 
-      3. Обработчик события `LOG_OUT` для выхода пользователя из системы
+        3. Обработчик события `LOG_OUT` для выхода пользователя из системы
 
-        ```javascript
-            socket.on(LOG_OUT, (token: string, callback: Function) => Auth(socket, this.mediator, token, (user: User) => this.logout(user, callback)));
-        ```
+            ```javascript
+                socket.on(LOG_OUT, (token: string, callback: Function) => Auth(socket, this.mediator, token, (user: User) => this.logout(user, callback)));
+            ```
 
-      4. Обработчик события `disconnect` для отключения пользователя
+        4. Обработчик события `disconnect` для отключения пользователя
 
-        ```javascript
-            socket.on('disconnect', () => this.disconnect(socket))
-        ```
+            ```javascript
+                socket.on('disconnect', () => this.disconnect(socket))
+            ```
     2. Установка обработчиков событий и вызовов посредника `(mediator)`
 
         ```javascript
