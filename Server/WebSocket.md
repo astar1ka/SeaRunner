@@ -29,32 +29,32 @@
       1. Обработчик события `LOG_IN` для аутентификации пользователя
 
         ```javascript
-        socket.on(LOG_IN, (login: string, password: string, callback: Function) => this.login(socket.id, login, password, callback));
+            socket.on(LOG_IN, (login: string, password: string, callback: Function) => this.login(socket.id, login, password, callback));
         ```
 
       2. Обработчик события `REGISTRATION` для регистрации пользователя
 
         ```javascript
-        socket.on(REGISTRATION, (login: string, password: string, name: string, cbRegistration: Function) => this.registration(socket, login, password, name, cbRegistration));
+            socket.on(REGISTRATION, (login: string, password: string, name: string, cbRegistration: Function) => this.registration(socket, login, password, name, cbRegistration));
         ```
 
       3. Обработчик события `LOG_OUT` для выхода пользователя из системы
 
         ```javascript
-        socket.on(LOG_OUT, (token: string, callback: Function) => Auth(socket, this.mediator, token, (user: User) => this.logout(user, callback)));
+            socket.on(LOG_OUT, (token: string, callback: Function) => Auth(socket, this.mediator, token, (user: User) => this.logout(user, callback)));
         ```
 
       4. Обработчик события `disconnect` для отключения пользователя
 
         ```javascript
-        socket.on('disconnect', () => this.disconnect(socket))
+            socket.on('disconnect', () => this.disconnect(socket))
         ```
     2. Установка обработчиков событий и вызовов посредника `(mediator)`
 
         ```javascript
-        const { GET_USER, GET_USER_BY_TOKEN } = this.TRIGGERS;
-        this.mediator.set(GET_USER, (socketId: string) => this.getUser(socketId));
-        this.mediator.set(GET_USER_BY_TOKEN, (token: string) => this.getUser(token));
+            const { GET_USER, GET_USER_BY_TOKEN } = this.TRIGGERS;
+            this.mediator.set(GET_USER, (socketId: string) => this.getUser(socketId));
+            this.mediator.set(GET_USER_BY_TOKEN, (token: string) => this.getUser(token));
         ```
 1. Класс `GameManager` расширяет класс `Manager`, что означает, что он наследует его свойства и методы.
 
