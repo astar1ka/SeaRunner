@@ -19,10 +19,10 @@
         <td><a href="https://github.com/1337m3rcy">Андрей</td>
         <td>Предмет</td>
         <td>Создаёт новый предмет</td>
-        <td>Метод в Game для создания предмета по правилам в зависимости от type и добавление его в таблицу Items через DB.addRecord. Возвращает добавленный предмет</td>
+        <td>Метод активной записи Item для создания предмета по правилам в зависимости от type и добавление его в таблицу Items через this.create Возвращает true или false</td>
         <td>addItem</td>
-        <td>object: TItem | null</td>
         <td>item_type_id: number из таблицы items_types</td>
+        <td>boolean</td>
         <td>В работе</td>
     </tr>
     <tr>
@@ -31,7 +31,7 @@
         <td>---</td>
         <td>Предмет</td>
         <td>Удалить предмет</td>
-        <td>Метод в DB для удаления по id, который возращает true в случае успеха и false в случае ошибки</td>
+        <td>Удаляет предмет из таблицы и из связных таблиц</td>
         <td>destroyItem</td>
         <td>item_id: number</td>
         <td>boolean</td>
@@ -39,6 +39,18 @@
     </tr>
     <tr>
         <td>3</td>
+        <td style="color: red">СРОЧНО</td>
+        <td>---</td>
+        <td>Предмет</td>
+        <td>Изменение свойств предмета</td>
+        <td>Метод активной записи Item для изменения свойств уже имеющегося предмета</td>
+        <td>setValue</td>
+        <td>numberValue: number value:number</td>
+        <td>boolean</td>
+        <td>---</td>
+    </tr>
+    <tr>
+        <td>4</td>
         <td style="color: red">СРОЧНО</td>
         <td>---</td>
         <td>Корабль</td>
@@ -50,21 +62,21 @@
         <td>---</td>
     </tr>
     <tr>
-        <td>4</td>
+        <td>5</td>
         <td style="color: red">СРОЧНО</td>
-        <td></td>
+        <td>---</td>
         <td>Корабль</td>
         <td>Создание корабля</td>
         <td>Метод создания дефолтного корабля в активной записи</td>
         <td>createDefaultShip</td>
         <td>captain_id: number</td>
         <td>boolean</td>
-        <td></td>
+        <td>---</td>
     </tr>
     <tr>
-        <td>5</td>
+        <td>6</td>
         <td style="color: green">не срочно</td>
-        <td></td>        
+        <td>---</td>        
         <td>Корабль</td>
         <td>Удалить корабль</td>
         <td>Метод активной записи для удаления корабля с хп равным или ниже 0 и передачи части инвентаря тому, кто его уничтожил</td>
@@ -74,43 +86,19 @@
         <td></td>
     </tr>
     <tr>
-        <td>6</td>
+        <td>7</td>
         <td style="color: green">не срочно</td>
         <td></td>       
         <td>Корабль</td>
         <td>Поменять владельца</td>
         <td>Метод активной записи по смене владельца</td>
-        <td></td>
+        <td>---</td>
         <td>captain_id: number - id нового владельца</td>
         <td>boolean</td>
-<td></td>
+        <td></td>
     </tr> 
-    <tr>
-        <td>7</td>
-        <td style="color: orange">срочность 50%</td>
-        <td></td>        
-        <td>Корабль</td>
-        <td>Поменять владельца</td>
-        <td>Метод активной записи по смене владельца</td>
-        <td></td>
-        <td>captain_id: number - id нового владельца</td>
-        <td>boolean</td>
-        <td></td>
-    </tr>
     <tr>
         <td>8</td>
-        <td style="color: red">СРОЧНО</td>
-        <td></td>
-        <td>Корабль</td>
-        <td>Поменять владельца</td>
-        <td>Метод активной записи по смене владельца</td>
-        <td></td>
-        <td>captain_id: number - id нового владельца</td>
-        <td>boolean</td>
-        <td></td>
-    </tr> 
-    <tr>
-        <td>9</td>
         <td style="color: red">СРОЧНО</td>
         <td></td>
         <td>Корабль</td>
@@ -122,7 +110,7 @@
         <td></td>
     </tr>
     <tr>
-        <td>10</td>
+        <td>9</td>
         <td style="color: red">СРОЧНО</td>
         <td></td>
         <td>Капитан</td>
@@ -134,7 +122,7 @@
         <td></td>
     </tr>
     <tr>
-        <td>11</td>
+        <td>10</td>
         <td style="color: orange">срочность 50%</td>
         <td></td>
         <td>Капитан</td>
@@ -146,7 +134,7 @@
         <td></td>
     </tr>
     <tr>
-        <td>12</td>
+        <td>11</td>
         <td style="color: red">СРОЧНО</td>
         <td></td>
         <td>Капитан</td>
@@ -158,7 +146,7 @@
         <td></td>
     </tr>
     <tr>
-        <td>13</td>
+        <td>12</td>
         <td style="color: red">СРОЧНО</td>
         <td></td>
         <td>Рынок</td>
@@ -170,7 +158,7 @@
         <td></td>
     </tr>
     <tr>
-        <td>14</td>
+        <td>13</td>
         <td style="color: red">СРОЧНО</td>
         <td></td>
         <td>Рынок</td>
@@ -182,7 +170,7 @@
         <td></td>
     </tr>
     <tr>
-        <td>15</td>
+        <td>14</td>
         <td style="color: red">СРОЧНО</td>
         <td></td>
         <td>Рынок</td>
@@ -194,7 +182,7 @@
         <td></td>
     </tr>
     <tr>
-        <td>16</td>
+        <td>15</td>
         <td style="color: red">СРОЧНО</td>
         <td></td>
         <td>Инвентарь</td>
@@ -206,7 +194,7 @@
         <td></td>
     </tr>
     <tr>
-        <td>17</td>
+        <td>16</td>
         <td style="color: green">не срочно</td>
         <td></td>
         <td>Инвентарь</td>
@@ -218,7 +206,7 @@
         <td></td>
     </tr>
     <tr>
-        <td>18</td>
+        <td>17</td>
         <td style="color: orange">срочность 50%</td>
         <td></td>
         <td>Инвентарь</td>
@@ -230,7 +218,7 @@
         <td></td>
     </tr>
     <tr>
-        <td>19</td>
+        <td>18</td>
         <td style="color: red">СРОЧНО</td>
         <td></td>
         <td>Инвентарь</td>
@@ -242,7 +230,7 @@
         <td></td>
     </tr>
     <tr>
-        <td>20</td>
+        <td>19</td>
         <td style="color: red">СРОЧНО</td>
         <td></td>
         <td>Инвентарь</td>
