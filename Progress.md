@@ -64,7 +64,7 @@
     <tr>
         <td>5</td>
         <td style="color: red">СРОЧНО</td>
-        <td>---</td>
+        <td><a href="https://github.com/astar1ka">Костя</td>
         <td>Корабль</td>
         <td>Создание корабля</td>
         <td>Метод создания дефолтного корабля в активной записи</td>
