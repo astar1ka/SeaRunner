@@ -1,20 +1,35 @@
 import { TCaptain } from "../models/Captain";
-import SelectAllianceScreen from "../pages/gamePage/selectAllianceScreen/SelectAllianceScreen";
 import IOSocket from "./Socket";
-import TownUI from '../pages/gamePage/GameInterfaces/TownUI/TownUI';
 import { TShip } from "../models/Ship";
+
+export type TSettlement = {
+    id: number;
+    name: string;
+    type: string;
+    x: number;
+    y: number;
+}
 
 export default class GameManager{
     private socket!:IOSocket;
     private captains = new Map();
     private captain!: TCaptain
+    private settlement!: TSettlement;
     constructor(){
+    }
+
+    private setSettlement(settlement: TSettlement){
+        if (settlement){
+            this.settlement = settlement;
+            this.setStatus(this.settlement.type);
+        }
     }
 
     private getCaptain(captain: TCaptain){
         if (captain){
             this.captain=captain;
-            this.setStatus((this.captain.status === 'town') ? 'town' : 'game');
+            if (this.captain.status === 'town' || this.captain.status === 'port')
+                this.socket.getSettlement((settlement: TSettlement) => this.setSettlement(settlement));
         } else this.newGame()
     }
 
@@ -30,10 +45,21 @@ export default class GameManager{
         this.setStatus('newGame');
     }
 
-    on(exit:Function, setStatus: Function, socket:IOSocket){
+    start(exit:Function, setStatus: Function, socket:IOSocket){
         this.socket = socket;
         this.exit = () => exit();
         this.setStatus = (status: string) => setStatus(status);
+
+        this.socket.onUpdateCaptain((captain: TCaptain)=>{
+            if (captain.id == this.captain.id) {
+                this.captain.x = captain.x;
+                this.captain.y = captain.y;
+                this.captain.ship = captain.ship;
+                this.captain.status = captain.status;
+            }
+            else this.captains.get(captain.id);
+        }
+        )
     }
 
     exit(){
@@ -43,6 +69,21 @@ export default class GameManager{
     }
 
     getShips():TShip[]{
+        console.log(this.captain);
         return this.captain.ships;
     }
+
+    createDefultShip(){
+        this.socket.createDefaultShip();
+    }
+
+    getSettlement(){
+        return this.settlement;
+    }
+
+    exitSettlement(){
+        this.socket.exitSettlement();
+    }
+
+    
 }
