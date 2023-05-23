@@ -1,4 +1,5 @@
 import { io } from "socket.io-client";
+import { TCaptain } from "../models/Captain";
 
 type TUser = {
     readonly id: number;
@@ -78,6 +79,22 @@ export default class IOSocket {
 
     public addCaptain(allianceId: number, callback: Function) {
         if (this.user) this.socket.emit(MESSAGES.ADD_CAPTAIN, this.user.token, allianceId, callback);
+    }
+
+    createDefaultShip(){
+        if (this.user) this.socket.emit('CREATE_DEFAULT_SHIP', this.user.token);
+    }
+
+    getSettlement(answer: Function){
+        if (this.user) this.socket.emit('GET_SETTLEMENT', this.user.token, answer);
+    }
+
+    exitSettlement(){
+        if (this.user) this.socket.emit('EXIT_SETTLEMENT', this.user.token);
+    }
+
+    onUpdateCaptain(handler: Function){
+        this.socket.on('UPDATE_CAPTAIN', (captain: TCaptain) => handler(captain));
     }
 
 }

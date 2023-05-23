@@ -14,6 +14,7 @@ export default class Ship extends Entity {
     private turnCooldownDuration: number = 6;
     private canMove: boolean = true;
     private turned = {
+        animated: false,
         is: false,
         counterClock: false
     };
@@ -30,10 +31,7 @@ export default class Ship extends Entity {
 
     public move(): void {
         if (this.canMove) {
-            if (this.turnCooldown <= 0) {
-                if (this.turned.is) this.rotate();
-            }
-            else this.turnCooldown--;
+            this.rotate();
             this.transport();
         }
     }
@@ -56,13 +54,19 @@ export default class Ship extends Entity {
     }
 
     private rotate(): void {
-        this.direction += (this.turned.counterClock) ? -0.2 : 0.2;
-        this.turnNumber += (this.turned.counterClock) ? 1 : -1;
-        if (this.turnNumber == -1) this.turnNumber = 31;
-        else if (this.turnNumber == 32) this.turnNumber = 0;
-        this.setFrame(this.turnNumber);
-        if (Math.abs(this.direction) > 3.14) this.direction = -this.direction;
-        this.turnCooldown = this.turnCooldownDuration;
+        if (this.turned.is) this.turned.animated = true;
+        const dRot = (this.turned.counterClock) ? -0.015 : 0.015;
+        if (this.turned.animated) this.setRotation(this.rotation + dRot);
+        if (this.rotation > 0.09 || this.rotation < -0.09) {
+            this.turnNumber += (this.turned.counterClock) ? 1 : -1;
+            if (this.turnNumber == -1) this.turnNumber = 31;
+            else if (this.turnNumber == 32) this.turnNumber = 0;
+            this.setFrame(this.turnNumber);
+            this.setRotation(0);
+            this.turned.animated = false;
+            this.direction += (this.turned.counterClock) ? -.2 : .2;
+            if (Math.abs(this.direction) > 3.14) this.direction = -this.direction;
+        }
     }
 
     public stopped(): void {
@@ -70,8 +74,8 @@ export default class Ship extends Entity {
     }
 
     public turnOn(counterClock: boolean = false) {
-            this.turned.counterClock = counterClock;
-            this.turned.is = true;
+        this.turned.counterClock = counterClock;
+        this.turned.is = true;
     }
 
     public turnOff() {

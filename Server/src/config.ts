@@ -22,7 +22,10 @@ export default class CONFIG {
         LOG_OUT: 'LOG_OUT',
         GAME_LOADED: 'GAME_LOADED',
         GET_CAPTAIN: 'GET_CAPTAIN',
-        ADD_CAPTAIN: 'ADD_CAPTAIN'
+        ADD_CAPTAIN: 'ADD_CAPTAIN',
+        CREATE_DEFAULT_SHIP: 'CREATE_DEFAULT_SHIP',
+        GET_SETTLEMENT: 'GET_SETTLEMENT',
+        EXIT_SETTLEMENT: 'EXIT_SETTLEMENT'
     }
 
     public MEDIATOR: {
@@ -81,12 +84,12 @@ const MIGRATION = {
     'captains':
         `CREATE table captains 
             (id bigint GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-            userId bigint NOT NULL,
-            allianceId bigint NOT NULL ,
-            shipId bigint,
+            user_id bigint NOT NULL,
+            alliance_id bigint NOT NULL ,
+            ship_id bigint,
             x bigint,
             y bigint,
-            status text NOT NULL DEFAULT 'town'::text)`,
+            zone_id bigint NOT NULL)`,
     'ships':
         `CREATE table ships 
             (id bigint GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
