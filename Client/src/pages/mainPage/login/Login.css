@@ -86,7 +86,7 @@ input:valid ~ label{
     transition: 0.5s
 }
 
-button:hover{
+.loginButton:hover{
     width: 70%;
     background-color: rgb(0, 255, 255);
 }
@@ -114,6 +114,4 @@ button:hover{
     background-size: cover;
     filter: invert(100%);
 }
-
-
 

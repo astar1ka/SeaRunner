@@ -1,4 +1,6 @@
 .error{
+    position: relative;
+    top: 7vh;
     display: flex;
     z-index: 10;
     font-size: 20px;
