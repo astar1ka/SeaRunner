@@ -25,11 +25,11 @@ export enum Tables {
     users = 'users',
     messages = 'messages',
     captains = 'captains',
-    towns = 'towns',
+    settlements = 'settlements',
     alliances = 'alliances',
     rooms = 'rooms',
-    traders = 'traders',
-    ships = 'ship',
+    markets = 'markets',
+    ships = 'ships',
     inventory = 'inventory'
 }
 
@@ -116,21 +116,28 @@ export type TCaptains = ICaptain [];
 ////////SHIP///////////////
 ///////////////////////////
 
-export interface IShipData {
-    captainId: number;
-    currentHp: number;
-    speed: number;
-    attackSpeed: number;
-    countCannon: number | null;
-    grade: number;
-    sizeInventory: number;
-}
-
-export interface IShip extends IShipData {
+export type TBaseShip = {
     id: number;
+    name: string;
+    speed: number;
+    max_hp: number;
+    attack_cooldown: number;
+    inventory_size: number;
 }
 
-export type TShips = IShip[];
+export type TShip = {
+    id: number;
+    captain_id: number;
+    type_id: number;
+    speed: number;
+    max_hp: number;
+    attack_cooldown: number;
+    inventory_size: number;
+    name: string;
+    current_hp: number;
+}
+
+export type TShips = TShip[];
 
 export type TEffectCell = {
     id: number;
@@ -171,5 +178,13 @@ export interface IMessage extends IMessageData {
 export type TRoom = {
     guid: string;
     type: string;
+}
+
+export type TSettlement = {
+    id: number;
+    name: string;
+    type: string;
+    x: number;
+    y: number;
 }
 

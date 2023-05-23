@@ -1,6 +1,6 @@
 import Phaser from "phaser";
 import tileMap from "../../../../assets/tileMap.json"
-import spriteMapSheet from '../../../../assets/spriteMap.webp'
+import spriteMapSheet from '../../../../assets/spriteMap.png'
 import ship from "../../../../assets/ship.png"
 import cannonball from "../../../../assets/cannonBall.webp"
 import explosion from "../../../../assets/explosion.webp"
@@ -13,9 +13,9 @@ export default class WorldScene extends Phaser.Scene{
     }
 
     preload():void{
-        window.addEventListener('resize', () => {
+        /*window.addEventListener('resize', () => {
             this.scale.refresh();
-        })
+        })*/
         this.load.image('spriteMapSheet', spriteMapSheet);
         this.load.tilemapTiledJSON('sea', tileMap);
         this.load.spritesheet('ship',ship,{frameWidth:256,frameHeight:256});
@@ -27,7 +27,7 @@ export default class WorldScene extends Phaser.Scene{
         const sand : any[] = [];
         const map = this.make.tilemap({ key: 'sea' });
         const tiles = map.addTilesetImage('sea', 'spriteMapSheet');
-        const sea = map.createLayer('sea', tiles, 0, 0);
+        const sea = map.createLayer('sea', tiles);
         sea.forEachTile((tile) => tile.setVisible(false));
         this.data.set('sea', sea);
         this.data.set('viewTiles', []);
@@ -39,11 +39,11 @@ export default class WorldScene extends Phaser.Scene{
         this.data.set('player', player);
         const camera = this.cameras.main;
         camera.startFollow(player);
-        camera.setZoom(0.8);
         camera.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
+        camera.setRoundPixels(true);
         setInterval(()=>{
-            let cameraWidth = (this.cameras.main.width*1.5)/this.cameras.main.zoom;
-            let cameraHeight = (this.cameras.main.height*1.5)/this.cameras.main.zoom;
+            let cameraWidth = (this.cameras.main.width*1.5);
+            let cameraHeight = (this.cameras.main.height*1.5);
             let cameraX = this.cameras.main.midPoint.x-cameraWidth/2;
             let cameraY = this.cameras.main.midPoint.y-cameraHeight/2;
             let viewTiles = this.data.get('viewTiles');
@@ -54,14 +54,13 @@ export default class WorldScene extends Phaser.Scene{
                 viewTiles.push(tile);
             })
             this.data.set('viewTiles', viewTiles);
-        }, 500);      
+        }, 1000);  
     }
     
 
     update(time: number, delta: number): void {
         const player = this.data.get('player');
-        const directionWind = -0.78;
         player.move();
-        player.restore();
+        //player.restore();
     }
 }

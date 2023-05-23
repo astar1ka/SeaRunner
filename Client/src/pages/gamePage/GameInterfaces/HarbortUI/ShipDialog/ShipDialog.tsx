@@ -15,6 +15,7 @@ type TShipDialogProps = {
 }
 
 export default function ShipDialog({ship}:TShipDialogProps){
+    console.log(ship);
     if (ship)
     return (
     <div className="ShipDialog">

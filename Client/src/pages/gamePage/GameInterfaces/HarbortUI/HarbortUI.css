@@ -27,3 +27,11 @@
     height: 50%;
     justify-content: center;
 }
+
+.defaultShip{
+    position: relative;
+    display: flex;
+    width: 50%;
+    height: 50%;
+    justify-content: center;
+}
