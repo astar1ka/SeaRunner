@@ -184,12 +184,12 @@
     <tr>
         <td>15</td>
         <td style="color: red">СРОЧНО</td>
-        <td></td>
+        <td> <a href="https://github.com/lisaGoro">Лиза</td>
         <td>Инвентарь</td>
         <td>Добавление предмета в инвентарь</td>
         <td>Метод активной записи Inventory для добавление предмета из таблицы Items в инвентарь по "item_id" и "captain_id" со "status"  ship/werehouse и 'index' равным номеру ячейки инвентаря(проверка на то, что ячейка не занята и есть свободные)</td>
         <td>putItem</td>
-        <td>item_id, status, index</td>
+        <td>item_id</td>
         <td>boolean</td>
         <td></td>
     </tr>
