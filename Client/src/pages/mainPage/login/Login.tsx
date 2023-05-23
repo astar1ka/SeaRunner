@@ -13,7 +13,7 @@ type TProps = {
 export default function Login({ setPage }: TProps) {
     const login = useRef<HTMLInputElement>(null!);
     const password = useRef<HTMLInputElement>(null!);
-
+    
     const [Error, setErrorText, setErrorShow] = useError();
 
     const callback = (data: object | null) => {

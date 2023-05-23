@@ -1,6 +1,7 @@
 * {
     font-family: 'poppins',sans-serif;
     letter-spacing: 1px;
+    box-sizing: border-box;
 }
 .reg-image{
     height: 100vh;
@@ -18,8 +19,7 @@
     right: 5%;
     width: 400px;
     height: 100vh;
-    background:  rgba(105, 91, 21, 0.7)
-    ;
+    background:  rgba(105, 91, 21, 0.7);
     border: 2px solid rgba(255,255,255,0.5);
     border-radius: 20px;
     /* backdrop-filter: blur(125px); */
@@ -97,7 +97,7 @@ input:valid ~ label{
     transition: 0.5s
 }
 
-button:hover{
+.regButton:hover{
     width: 70%;
     background-color: rgb(4, 184, 255);
 }
