@@ -241,4 +241,16 @@
         <td>TItem []</td>
         <td></td>
     </tr>
+    <tr>
+        <td>20</td>
+        <td style="color: red">СРОЧНО</td>
+        <td><a href="https://github.com/dvntcxz">рома</td>
+        <td>Склад</td>
+        <td>верстка склада, перемещение предметов</td>
+        <td>создание хуков для реализации перемещения</td>
+        <td>werehouse</td>
+        <td></td>
+        <td></td>
+        <td>В работе</td>
+    </tr>
 </table>
