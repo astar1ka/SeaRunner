@@ -29,6 +29,7 @@ export default function HarbortUI({game}: TProps) {
     <ShipDialog ship={game.getShips()[numberShip]}/>
     </div>
     <img className='nextShip' onClick={onClickNextHandler} src={next}/>
+    <button className='defaultShip' onClick = {() => game.createDefultShip()}></button>
     </div>
     )
 }

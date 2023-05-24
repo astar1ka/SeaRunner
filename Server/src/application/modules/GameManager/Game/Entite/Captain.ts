@@ -1,7 +1,6 @@
 import ActiveRecord from "../../../ActiveRecord";
-import Cache from "../../../Cache";
 import DB from "../../../DB/DB";
-import { ICaptain, IShip, TAttributes, TShips, Tables } from "../../../Types";
+import { TShip, TAttributes, TShips, Tables} from "../../../Types";
 import Ship from "./Ship";
 
 export default class Captain extends ActiveRecord{
@@ -17,7 +16,7 @@ export default class Captain extends ActiveRecord{
         this.create(data);
     }
 
-    public addShip(ship: IShip):void {
+    public addShip(ship: TShip):void {
         //this.ships.set(ship.id,new Ship(ship));
     }
 
@@ -25,18 +24,15 @@ export default class Captain extends ActiveRecord{
         const data = await this.db.getCaptain(userId);
         if (data) {
             this.rewrite(data);
-            this.loadShips();
+            await this.loadShips();
             const activeShip = this.ships?.find(ship => ship.id === this.get('shipid'));
-            if (activeShip) this.ship = Ship.load(this.db,activeShip);
             return true;
         }
         else return false;
     }
 
-    public loadShips() {
-        if (this.ships) {
-            this.ships = this.db.getShips(this.get('userid'));
-        }
+    public async loadShips() {
+        this.ships = await this.db.getShips(this.getId());
     }
 
     public getData():TAttributes {
@@ -44,5 +40,21 @@ export default class Captain extends ActiveRecord{
         result.ship = (this.ship) ? this.ship.getData() : null;
         result.ships = this.ships || [];
         return result;
+    }
+
+    public async createShip(newShip: TShip){
+        const ship = new Ship(this.db);
+        await ship.add(newShip);
+    }
+
+    public setStatus(status: string){
+        if (status in ['sea', 'town', 'port']){
+            this.attributes['status'] = status;
+        }
+    }
+
+    public setXY(x: number, y: number){
+        this.attributes['x'] = x;
+        this.attributes['y'] = y;
     }
 }

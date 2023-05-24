@@ -38,7 +38,7 @@ export default class Mediator {
     public call(name: string, data?: any) {
         if (name && this.events[name]) {
             this.events[name].forEach(event => {
-                if (event instanceof Function) event(...data);
+                if (event instanceof Function) event(data);
             })
         }
     }
