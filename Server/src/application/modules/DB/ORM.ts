@@ -16,15 +16,16 @@ export default class ORM {
             query: query,
             values: values,
             where: (conditions: object) => this.where(sqlQuery, conditions),
-            run: () => this.run(sqlQuery.query, sqlQuery.values)
+            run: <T>(one: boolean = false) => this.run<T>(one, sqlQuery.query, sqlQuery.values)
         }
         return sqlQuery;
     }
 
-    async run<T>(query: string, values: any[]): Promise<T | null> {
+    async run<T>(one: boolean, query: string, values: any[]): Promise<T | null> {
         try {
             const result = await this.db.query(query, values);
-            return (result.rows[0]) ? (result.rowCount === 1) ? result.rows[0] : result.rows : null;
+            if (one) return (result.rows[0]) ? result.rows[0] as T: null;
+            return (result.rows[0]) ? result.rows as T: [] as T;
         }
         catch (error) {
             return null;
@@ -62,7 +63,7 @@ export default class ORM {
     insert(table: string, records: object[]) {
         const { fieldsNames, values, valuesMask } = this.getValuesAndNameFields(records);
         let query: string = `INSERT INTO ${table} (${fieldsNames.join(', ')}) VALUES ${valuesMask.join(', ')} RETURNING *`;
-        return { run: <T>() => this.run<T>(query, values) }
+        return { run: <T>(one: boolean = false) => this.run<T>(one, query, values) }
     }
 
     private getValuesParams(conditions: object | number, operand: string, index: number = 0) {

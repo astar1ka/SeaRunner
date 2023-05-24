@@ -9,8 +9,8 @@ export default function SelectAllice(props: any){
         callback(props.id);
     }
 
-    return <div className='selectAllice' onClick={onClickHandler}>
+    return (<div className='selectAllice' onClick={onClickHandler}>
         <img className={'image' + allianceid}/>
         <a>{allianceName}</a>
-    </div>
+    </div>)
 }

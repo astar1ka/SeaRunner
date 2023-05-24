@@ -30,6 +30,7 @@ function gameScreen(gameStatus: string){
         return <SelectAllianceScreen select={(id: number) => game.startNewGame(id)}/>
     if (gameStatus === 'town')
         return <TownUI game={game}/>
+        return ''
 }
 
 const game = new GameManager();
@@ -37,11 +38,12 @@ const game = new GameManager();
 export default function GamePage({setPage}: TProps) {
     const [gameStatus, setGameStatus] = useState('startGame');
     useEffect(() => {
-        game.on(setPage,setGameStatus, socket);
+        game.start(setPage,setGameStatus, socket);
         game.startGame();
     }, []);
 
     return (<Fragment>
         {gameScreen(gameStatus)}
+        <Game game={game}></Game>
     </Fragment>)
 }

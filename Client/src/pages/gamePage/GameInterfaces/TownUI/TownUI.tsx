@@ -27,12 +27,12 @@ export default function TownUI({game}: TProps){
         ''}
         <div className="TownManage">
         <GameLogo/>
-        <h2>Роял-харборт</h2>
+        <h2>{game.getSettlement().name}</h2>
         <button className='ManageButton'>Торговец</button>
         <button className='ManageButton' onClick={() => setWindow('werehouse')}>Склад</button>
         <button className='ManageButton' onClick={() => setWindow('harbort')}>Верфь</button>
         <button className='ManageButton'>Таверна</button>
-        <button className='ManageButton'>В море</button>
+        <button className='ManageButton' onClick={()=>game.exitSettlement()}>В море</button>
         </div>
     </div>)
 }

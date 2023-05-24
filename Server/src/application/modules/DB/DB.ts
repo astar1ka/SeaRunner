@@ -1,6 +1,6 @@
 import { Client } from 'pg';
 import ORM from './ORM';
-import { IUser, TUsers, TShips, IUserData, TMessages, IMessageData, IShipData, ICaptainData, TCaptainData, ICaptain, TCaptains, TRoom, Tables, TAttributes, TMessage } from '../Types';
+import { IUser, TUsers, TShips, IUserData, TMessages, IMessageData, ICaptainData, TCaptainData, ICaptain, TCaptains, TRoom, Tables, TAttributes, TMessage, TBaseShip, TSettlement } from '../Types';
 
 export default class DB {
     private db: Client | null;
@@ -45,7 +45,7 @@ export default class DB {
     }
 
     public async find(table: Tables, id: number) {
-        return await this.orm.select(table).where({ id: id }).run();
+        return await this.orm.select(table).where({ id: id }).run(true);
     }
 
     public async updateRecord(table: Tables, id: number, data: object) {
@@ -53,7 +53,7 @@ export default class DB {
     }
 
     public async addRecord(table: Tables, data: object) {
-        return await this.orm.insert(table, [{ ...data }]).run();
+        return await this.orm.insert(table, [{ ...data }]).run(true);
     }
 
     ////////////////////////////
@@ -61,11 +61,11 @@ export default class DB {
     ////////////////////////////
 
     public async getUserByLogin(login: string) {
-        return await this.orm.select('users').where({ login }).run()
+        return await this.orm.select('users').where({ login }).run(true)
     }
 
     public async addUser(data: IUserData) {
-        return await this.orm.insert('users', [data]).run();
+        return await this.orm.insert('users', [data]).run(true);
     }
 
     public setUserToken(id: number, token: string | null) {
@@ -86,7 +86,7 @@ export default class DB {
     }
 
     public getCaptain(userId: number) {
-        return this.orm.select('captains').where({userId}).run();
+        return this.orm.select('captains').where({userId}).run(true);
     }
 
     public getCaptains() {
@@ -101,16 +101,12 @@ export default class DB {
     //////////SHIP//////////////
     ////////////////////////////
 
-    public addShip(ship: IShipData) {
-        //return this.orm.insert('ships', [ship]).run();
+    public getShips(captain_id: number): TShips {
+        return this.orm.select('ships').where({captain_id}).run();
     }
 
-    public updateShip(userId: number) {
-        //return this.orm.update('ships', userId, { name });
-    }
-
-    public getShips(id: number): TShips {
-        return this.orm.select('ships').where({id: id}).run();
+    public getShipsTypes(){
+        return this.orm.select('ships_types').run();
     }
 
 
@@ -186,8 +182,8 @@ export default class DB {
     /////////////TOWNS///////////
     /////////////////////////////
 
-    public getTowns() {
-        //return this.orm.all('towns');
+    public getSettlements(): Promise<TSettlement [] | null>{
+        return this.orm.select('settlements').run<TSettlement[]>();
     }
 
     /////////////////////////////
@@ -214,4 +210,9 @@ export default class DB {
     public getAlliances() {
         //return this.orm.all('alliances');
     }
+
+    public getMarketBySettlementId(settlement_id: number){
+       return this.orm.select('markets').where({settlement_id}).run(true);
+    }
+
 }
