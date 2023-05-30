@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import ChatManager from "../../../modules/ChatManager/ChatManager";
-import Mediator from "../../../modules/Mediator";
+import Mediator from "../../../services/Mediator";
 import UserManager from "../../../modules/UserManager/UserManager";
 import Answer from "../../answer/Answer";
 

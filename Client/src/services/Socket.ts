@@ -1,15 +1,17 @@
 import { io } from "socket.io-client";
 import { TCaptain } from "../models/Captain";
+import mediator from "./Mediator";
+import { TSettlement } from "./GameManager";
 
-type TUser = {
+export type TUser = {
     readonly id: number;
-    readonly token: string;
     readonly name: string;
 } | null;
 
 export enum MESSAGES {
     //USER
     LOG_IN = 'LOG_IN',
+    LOG_IN_SUCCEFUL = 'LOG_IN_SUCCEFUL',
     LOG_OUT = 'LOG_OUT',
     REGISTRATION = 'REGISTRATION',
     //CHAT
@@ -22,26 +24,28 @@ export enum MESSAGES {
     ADD_CAPTAIN = 'ADD_CAPTAIN',
     GET_START = 'GET_START',
     GAME_LOADED = 'GAME_LOADED'
+
 }
 
 export default class IOSocket {
     private socket = io('http://localhost:3001');
     private user: TUser = null;
     constructor(){
-        this.socket.auth = {token: 123}
+        this.socket.on(MESSAGES.LOG_IN, (user: TUser) => mediator.call('UPDATE_USER', user));
+        this.socket.on(MESSAGES.GET_CAPTAIN, (captain: TCaptain) => {
+            console.log(captain);
+            mediator.call('UPDATE_PLAYER', captain)
+        });
+        this.socket.on('GET_SETTLEMENT', (settlement: TSettlement) => mediator.call('UPDATE_SETTLEMENT', settlement));
     }
 
-    public login(login: string, password: string, callback: Function): void {
-        this.socket.emit(MESSAGES.LOG_IN, login, password, (user: TUser) => {
-            this.user = user;
-            this.socket.auth = {token: user?.token}
-            callback(user);
-        });
+    public login(login: string, password: string): void {
+        this.socket.emit(MESSAGES.LOG_IN, login, password);
     }
 
     public logout(callback: Function): void {
         if (this.user) {
-            this.socket.emit(MESSAGES.LOG_OUT, this.user.token, callback);
+            this.socket.emit(MESSAGES.LOG_OUT, callback);
         }
     }
 
@@ -65,36 +69,35 @@ export default class IOSocket {
 
     public sendMessage(message: string, toUserId: number | null) {
         if (this.user) {
-            this.socket.emit('SEND_MESSAGE', toUserId, message, this.user.token);
+            this.socket.emit('SEND_MESSAGE', toUserId, message);
         }
     }
 
     public gameLoaded() {
-        if (this.user) this.socket.emit(MESSAGES.GAME_LOADED);
+        if (this.socket.auth) this.socket.emit(MESSAGES.GAME_LOADED);
     }
 
-    public getCaptain(callback: Function) {
-        if (this.user) this.socket.emit(MESSAGES.GET_CAPTAIN, this.user.token, callback);
+    public getCaptain() {
+        this.socket.emit(MESSAGES.GET_CAPTAIN);
     }
 
     public addCaptain(allianceId: number, callback: Function) {
-        if (this.user) this.socket.emit(MESSAGES.ADD_CAPTAIN, this.user.token, allianceId, callback);
+        if (this.user) this.socket.emit(MESSAGES.ADD_CAPTAIN,  allianceId, callback);
     }
 
     createDefaultShip(){
-        if (this.user) this.socket.emit('CREATE_DEFAULT_SHIP', this.user.token);
+        if (this.user) this.socket.emit('CREATE_DEFAULT_SHIP');
     }
 
-    getSettlement(answer: Function){
-        if (this.user) this.socket.emit('GET_SETTLEMENT', this.user.token, answer);
+    getSettlement(){
+        this.socket.emit('GET_SETTLEMENT');
     }
 
     exitSettlement(){
-        if (this.user) this.socket.emit('EXIT_SETTLEMENT', this.user.token);
+        if (this.user) this.socket.emit('EXIT_SETTLEMENT');
     }
 
     onUpdateCaptain(handler: Function){
         this.socket.on('UPDATE_CAPTAIN', (captain: TCaptain) => handler(captain));
     }
-
 }

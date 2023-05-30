@@ -12,7 +12,7 @@ export default class User extends ActiveRecord{
     constructor(db:DB){
         super(db, Tables.users);
         this.fields = ['id','login','name','token'];
-        this.hidden = ['login']
+        this.hidden = ['login', 'token'];
     }
 
     public getSocketId(){

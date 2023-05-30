@@ -1,6 +1,7 @@
 import { TCaptain } from "../models/Captain";
 import IOSocket from "./Socket";
 import { TShip } from "../models/Ship";
+import mediator from "./Mediator";
 
 export type TSettlement = {
     id: number;
@@ -16,27 +17,27 @@ export default class GameManager{
     private captain!: TCaptain
     private settlement!: TSettlement;
     constructor(){
+        mediator.subscribe('gameManager','UPDATE_PLAYER',(captain: TCaptain) => this.getCaptain(captain));
+        mediator.subscribe('gameManager','UPDATE_SETTLEMENT',(settlement: TSettlement) => this.setSettlement(settlement))
     }
 
     private setSettlement(settlement: TSettlement){
         if (settlement){
             this.settlement = settlement;
-            console.log(this.settlement)
-            this.setStatus(this.settlement.type);
+            this.setStatus('town');
         }
     }
 
     private getCaptain(captain: TCaptain){
         if (captain){
             this.captain=captain;
-            console.log(this.captain)
             if (this.captain.status === 'town' || this.captain.status === 'port')
-                this.socket.getSettlement((settlement: TSettlement) => this.setSettlement(settlement));
+                this.socket.getSettlement();
         } else this.newGame()
     }
 
     startGame(){
-        this.socket.getCaptain((captain: TCaptain) => this.getCaptain(captain));
+        this.socket.getCaptain();
     }
 
     startNewGame(id: number){
@@ -51,17 +52,6 @@ export default class GameManager{
         this.socket = socket;
         this.exit = () => exit();
         this.setStatus = (status: string) => setStatus(status);
-
-        this.socket.onUpdateCaptain((captain: TCaptain)=>{
-            if (captain.id == this.captain.id) {
-                this.captain.x = captain.x;
-                this.captain.y = captain.y;
-                this.captain.ship = captain.ship;
-                this.captain.status = captain.status;
-            }
-            else this.captains.get(captain.id);
-        }
-        )
     }
 
     exit(){

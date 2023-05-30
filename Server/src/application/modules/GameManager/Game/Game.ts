@@ -1,6 +1,6 @@
 import Cache from "../../Cache";
 import DB from "../../DB/DB";
-import Mediator from "../../Mediator";
+import Mediator from "../../../services/Mediator";
 import Captain from "./Entite/Captain";
 import Item from "./Entite/Item";
 import Ship from "./Entite/Ship";

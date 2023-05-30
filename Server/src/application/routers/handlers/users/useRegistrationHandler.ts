@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import Answer from "../../answer/Answer";
-import Mediator from "../../../modules/Mediator";
+import Mediator from "../../../services/Mediator";
 
 export default function useRegistrationHandler(answer: Answer, mediator: Mediator) {
     return (req: Request, res: Response): void => {

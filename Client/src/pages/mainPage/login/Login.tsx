@@ -1,10 +1,12 @@
-import { useRef, Fragment } from "react"
+import { useRef, Fragment, useEffect, useState } from "react"
 
 
 import './Login.css';
 import { Pages, socket } from "../../../App";
 import GameLogo from "../../elements/gameLogo/GameLogo";
 import useError from "../../../hooks/useError";
+import mediator from "../../../services/Mediator";
+import { TUser } from "../../../services/Socket";
 
 type TProps = {
     setPage: Function
@@ -15,24 +17,26 @@ export default function Login({ setPage }: TProps) {
     const password = useRef<HTMLInputElement>(null!);
     
     const [Error, setErrorText, setErrorShow] = useError();
+    const [user, setUser] = useState(null as TUser);
+
+    useEffect( () => {
+        mediator.subscribe('loginPage', 'UPDATE_USER', (user: TUser) => setUser(user));
+        return () => mediator.unsubscribe('loginPage', 'UPDATE_USER');
+    }, [])
+
+    useEffect(() => {
+        if (user) setPage(Pages.GamePage)
+    }, [user])
 
     const callback = (data: object | null) => {
-        if (data) {
-            setPage(Pages.GamePage);
-        }
-        else {
-            setErrorText('Неверный логин или пароль');
-            setErrorShow(true);
-        };
     }
 
     function loginHandler() {
         if (login.current.value && password.current.value) {
             socket.login(
-                login.current.value,
-                password.current.value,
-                callback
-            )
+                login.current.value, 
+                password.current.value
+                )
         }
     }
 

@@ -12,19 +12,24 @@ const io = new Server(server, {
 
 import CONFIG from './config';
 import DB from './application/modules/DB/DB';
-import Mediator from './application/modules/Mediator';
+import Mediator from './application/services/Mediator';
+
+import SocketService from './application/services/Socket';
 import UserManager from './application/modules/UserManager/UserManager';
 import ChatManager from './application/modules/ChatManager/ChatManager';
-import Router from './application/routers/Router';
 import GameManager from './application/modules/GameManager/GameManager';
+
+import Router from './application/routers/Router';
+
 
 const { PORT, MEDIATOR, DB_CONNECT, MESSAGES } = new CONFIG;
 
 const mediator = new Mediator(MEDIATOR.EVENTS, MEDIATOR.TRIGGERS);
 const db = new DB({ ...DB_CONNECT, initCb });
-new UserManager({ mediator, db, io, MESSAGES });
-new ChatManager({ mediator, db, io, MESSAGES });
-new GameManager({ mediator, db, io, MESSAGES });
+const socket = new SocketService(io, mediator);
+new UserManager({ mediator, db, socket, MESSAGES });
+//new ChatManager({ mediator, db, socket, MESSAGES });
+new GameManager({ mediator, db, socket, MESSAGES });
 
 app.use(express.static('public'));
 app.use(Router(mediator));
@@ -37,6 +42,16 @@ const deinitModules = () => {
     db.destructor();
     setTimeout(() => process.exit(), 500);
 }
+const testMiddleware = [
+    (arg: any, next: Function) => {
+        console.log('first');
+        arg.push('123');
+        next(arg);
+    },
+    (arg: any, next: Function) => {
+        console.log('second',next(arg));
+    },
+]
 
 server.listen(PORT, () => console.log('It works with socket!!!'));
 

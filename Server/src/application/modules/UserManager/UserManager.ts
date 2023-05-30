@@ -1,37 +1,33 @@
-import Auth from "../Auth";
 import Cache from "../Cache";
 import Manager, { IManager } from "../Manager";
 import User from "./User";
-import { Socket } from "socket.io";
+import { Event, Socket } from "socket.io";
 
 export default class UserManager extends Manager {
     private users = new Cache<User>;
     constructor(options: IManager) {
         super(options);
-        const {LOG_IN, LOG_OUT, REGISTRATION} = this.MESSAGES;
+        const { LOG_IN, LOG_OUT, REGISTRATION } = this.MESSAGES;
         //io
-        if (!this.io) return;
-        this.io.on('connection', (socket: Socket) => {
-            socket.on(LOG_IN, (login:string, password: string, callback: Function) => this.login(socket.id, login, password, callback));
-            socket.on(REGISTRATION, (login:string, password: string, name: string, cbRegistration: Function) => this.registration(socket, login, password, name, cbRegistration));
-            socket.on(LOG_OUT, (token: string, callback: Function) => Auth(socket,this.mediator, token, (user: User) => this.logout(user, callback)) );
-            socket.on('disconnect', () => this.disconnect(socket))
-        });
+        this.socket.on(LOG_IN, async (login: string, password: string, socket: Socket) => await this.login(socket, login, password), ['answer']);
+        this.socket.on(REGISTRATION, (login: string, password: string, name: string, cbRegistration: Function, socket: Socket) => this.registration(socket, login, password, name, cbRegistration));
+        //this.socket.on(LOG_OUT, (token: string, callback: Function, socket: Socket) => Auth(socket, this.mediator, token, (user: User) => this.logout(user, callback)));
+        this.socket.on('disconnect', (socket: Socket) => this.disconnect(socket))
         //Mediator Triggers
-        const {GET_USER,GET_USER_BY_TOKEN} = this.TRIGGERS;
+        const { GET_USER, GET_USER_BY_TOKEN } = this.TRIGGERS;
         this.mediator.set(GET_USER, (socketId: string) => this.getUser(socketId));
         this.mediator.set(GET_USER_BY_TOKEN, (token: string) => this.getUser(token));
         //Mediator Events
     }
 
-    private async login(socketId: string, login: string, password: string, answer: Function){
+    private async login(socket: Socket, login: string, password: string) {
         const user = new User(this.db);
-        if (await user.auth(login,password,socketId)){
-            const userData = user.getData();
-            this.users.set(user.getToken(),user);
-            answer(userData);
+        if (await user.auth(login, password, socket.id)) {
+            this.users.set(user.getToken(), user);
+            socket.handshake.auth.token = user.getToken();
+            return ['LOG_IN', user.getData()];
         }
-        else answer(null);
+        else return ['LOG_IN', null];
     }
 
     private userOffline(user: User) {
@@ -40,7 +36,7 @@ export default class UserManager extends Manager {
         user.logout();
     }
 
-    public disconnect(socket: Socket){
+    public disconnect(socket: Socket) {
         const user = this.getUser(socket.id);
         if (user) this.userOffline(user);
     }
@@ -49,13 +45,17 @@ export default class UserManager extends Manager {
         return this.users.get(token) || null;
     }
 
-    public async registration(socket:Socket, login: string, password: string, name: string, cbRegistration: Function) {
-            const user = new User(this.db);
-            cbRegistration(await user.registration(login, password, name));
+    public async registration(socket: Socket, login: string, password: string, name: string, cbRegistration: Function) {
+        const user = new User(this.db);
+        cbRegistration(await user.registration(login, password, name));
     }
 
     public logout(user: User, callback: Function): void {
         callback(user.logout());
+    }
+
+    testLogin(login: string) {
+        return login;
     }
 
 }

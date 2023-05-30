@@ -1,10 +1,11 @@
-import Mediator from "./Mediator";
+import Mediator from "../services/Mediator";
+import SocketService from "../services/Socket";
 import DB from "./DB/DB";
 
 export interface IManager{
     mediator: Mediator;
     db: DB;
-    io: any;
+    socket: SocketService;
     MESSAGES:  any;
 }
 
@@ -13,14 +14,14 @@ export default class Manager{
     protected EVENTS;
     protected TRIGGERS;
     protected db;
-    protected io;
+    protected socket;
     protected MESSAGES;
-    constructor(options:{mediator: Mediator, db: DB, io: any, MESSAGES:  any}){
+    constructor(options:IManager){
         this.mediator = options.mediator;
         this.db = options.db;
         this.EVENTS = this.mediator.getEventsNames();
         this.TRIGGERS = this.mediator.getTriggersNames();
-        this.io = options.io;
+        this.socket = options.socket;
         this.MESSAGES = options.MESSAGES;
     }
 }

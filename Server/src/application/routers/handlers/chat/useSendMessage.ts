@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import Mediator from "../../../modules/Mediator";
+import Mediator from "../../../services/Mediator";
 import Answer from "../../answer/Answer";
 
 export default function useSendMessage(answer: Answer, mediator: Mediator) {

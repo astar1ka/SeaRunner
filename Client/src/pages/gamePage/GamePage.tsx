@@ -9,8 +9,9 @@ import LoadScreen from "./loadScreen/LoadScreen";
 
 import './GamePage.css'
 import { socket } from "../../App";
-import GameManager from "../../services/GameManager";
+import GameManager, { TSettlement } from "../../services/GameManager";
 import TownUI from "./GameInterfaces/TownUI/TownUI";
+import mediator from "../../services/Mediator";
 
 export type TCaptain = {
     id: number,

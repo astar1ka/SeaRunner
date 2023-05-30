@@ -7,7 +7,7 @@ import useGetMessagesHandler from './handlers/chat/useGetMessagesHandler'
 import useSendMessage from './handlers/chat/useSendMessage';
 import getAllUsersHandler from './handlers/users/getAllUsersHandler';
 import Answer from './answer/Answer';
-import Mediator from '../modules/Mediator';
+import Mediator from '../services/Mediator';
 
 
 const router = express.Router();
