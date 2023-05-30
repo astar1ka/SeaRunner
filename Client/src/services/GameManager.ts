@@ -21,6 +21,7 @@ export default class GameManager{
     private setSettlement(settlement: TSettlement){
         if (settlement){
             this.settlement = settlement;
+            console.log(this.settlement)
             this.setStatus(this.settlement.type);
         }
     }
@@ -28,6 +29,7 @@ export default class GameManager{
     private getCaptain(captain: TCaptain){
         if (captain){
             this.captain=captain;
+            console.log(this.captain)
             if (this.captain.status === 'town' || this.captain.status === 'port')
                 this.socket.getSettlement((settlement: TSettlement) => this.setSettlement(settlement));
         } else this.newGame()

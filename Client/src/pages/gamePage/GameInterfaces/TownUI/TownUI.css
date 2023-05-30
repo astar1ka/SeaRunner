@@ -1,11 +1,11 @@
 .TownInterface{
+    position: relative;
     height: 100vh;
     max-height: 100vh;
     display: flex;
     justify-content: right;
     align-items: center;
 }
-
 .TownBackground{
     position: absolute;
     z-index: -5;
@@ -45,6 +45,9 @@
     transition: 0.5s;
     margin-top: 2vh;
     color: white;
+}
+.ManageButton:hover{
+    background-color: rgb(194, 250, 12);
 }
 
 .--blur{

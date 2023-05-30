@@ -6,6 +6,7 @@ import Trader from '../../Trader/Trader';
 import HarbortUI from '../HarbortUI/HarbortUI';
 import GameManager from '../../../../services/GameManager';
 import WerehouseUI from '../WerehouseUI/WerehouseUI';
+import TavernUI from '../TavernUI/TavernUI'
 
 type TProps ={
     game: GameManager;
@@ -23,7 +24,7 @@ export default function TownUI({game}: TProps){
         (window ==='harbort') ?
         <HarbortUI game={game}/>:
         (window ==='tavern') ?
-        '':
+        <TavernUI/>:
         ''}
         <div className="TownManage">
         <GameLogo/>
@@ -31,7 +32,7 @@ export default function TownUI({game}: TProps){
         <button className='ManageButton'>Торговец</button>
         <button className='ManageButton' onClick={() => setWindow('werehouse')}>Склад</button>
         <button className='ManageButton' onClick={() => setWindow('harbort')}>Верфь</button>
-        <button className='ManageButton'>Таверна</button>
+        <button className='ManageButton' onClick={() => setWindow('tavern')}>Таверна</button>
         <button className='ManageButton' onClick={()=>game.exitSettlement()}>В море</button>
         </div>
     </div>)

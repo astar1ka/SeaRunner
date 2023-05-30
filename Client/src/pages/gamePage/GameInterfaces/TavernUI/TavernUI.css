@@ -1,0 +1,66 @@
+.tavern-interface{
+    position: absolute;
+    width: 70vw;
+    height: 100vh;
+    left: 2.5vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: bisque; */
+}
+.window-recruiting{
+    width: 82%;
+    height: 95%;
+    background: url(./images/tavernBack.jpg);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    backdrop-filter: blur(100px);
+    border: 20px solid;
+    border-image: url(../WerehouseUI/images/blackwood.jpg);
+    border-image-slice: 20;
+    border-image-repeat: round;
+}
+.for-image{
+    width: 30vw;
+    height: 20vh;
+}
+.tavern-image{
+    width: 100%;
+    height: 100%;
+}
+.cards{
+    position: relative;
+    width: 100%;
+    height: 35vh;
+    display: flex;
+    justify-content: space-around;
+    top: 20vh;
+}
+.card{
+    position: relative;
+    width: 13vw;
+    height: 100%;
+    border: 10px solid;
+    border-image: url(../WerehouseUI/images/goldRama.jpg);
+    border-image-slice: 70;
+    border-image-repeat: round;
+}
+
+.tavern-button{
+    position: relative;
+    bottom: -40vh;
+    width: 100%;
+    height: 15vh;
+    background: url(./images/btn.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    border: 0;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.img-cards{
+    width: 100%;
+    height: 100%;
+}
