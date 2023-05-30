@@ -100,7 +100,7 @@
     <tr>
         <td>8</td>
         <td style="color: red">СРОЧНО</td>
-        <td></td>
+        <td>Люба</td>
         <td>Корабль</td>
         <td>Получение урона</td>
         <td>Метод активной записи по уменьшению хп</td>
@@ -208,7 +208,7 @@
     <tr>
         <td>17</td>
         <td style="color: orange">срочность 50%</td>
-        <td></td>
+        <td>Саша Чиркова</td>
         <td>Инвентарь</td>
         <td>Удалить предмет из инвентаря</td>
         <td>Метод активной записи Inventory по удалению предмета из инвентаря по item_id</td>
@@ -252,6 +252,74 @@
         <td></td>
         <td></td>
         <td>В работе</td>
+    </tr>
+</table>
+
+# Фронт
+
+<table>
+    <tr>
+        <th>Номер</th>
+        <th>Срочность</th>
+        <th>Исполнитель</th>
+        <th>Описание</th>
+        <th>Статус</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td style="color: orange">срочность 50%</td>
+        <td></td>
+        <td>Меню города</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td style="color: orange">срочность 50%</td>
+        <td></td>
+        <td>Меню порта</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td style="color: orange">срочность 50%</td>
+        <td></td>
+        <td>Меню магазина</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td style="color: orange">срочность 50%</td>
+        <td></td>
+        <td>Меню трюма</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td style="color: orange">срочность 50%</td>
+        <td></td>
+        <td>Меня корабля</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td style="color: orange">срочность 50%</td>
+        <td></td>
+        <td>Меню таверны</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td style="color: orange">срочность 50%</td>
+        <td></td>
+        <td>Меню заданий</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>8</td>
+        <td style="color: orange">срочность 50%</td>
+        <td></td>
+        <td>Меню капитана</td>
+        <td></td>
     </tr>
 </table>
 
