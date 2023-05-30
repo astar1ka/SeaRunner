@@ -253,6 +253,18 @@
         <td></td>
         <td>В работе</td>
     </tr>
+    <tr>
+        <td>21</td>
+        <td style="color: red">СРОЧНО</td>
+        <td><a href="https://github.com/dvntcxz">рома</td>
+        <td>Таверна</td>
+        <td>верстка таверны, найм команды</td>
+        <td>создание логики для реализации найма команды</td>
+        <td>tavern</td>
+        <td></td>
+        <td></td>
+        <td>В работе</td>
+    </tr>
 </table>
 
 # Фронт
