@@ -1,12 +1,14 @@
 import Entity from "../Entity";
 import { Scene } from "phaser";
 import Cannonball from "./Cannonball";
+import Sled from "./Sled";
 
 export default class Ship extends Entity {
     public snipeRight = 1;
     private cannonball1;
     private cannonball2;
     private cannonball3;
+    private sled;
     private speed: number = 0;
     private direction: number = 0;
     private turnNumber: number = 0;
@@ -27,6 +29,8 @@ export default class Ship extends Entity {
         this.cannonball1 = new Cannonball(this, this.x, this.y);
         this.cannonball2 = new Cannonball(this, this.x, this.y);
         this.cannonball3 = new Cannonball(this, this.x, this.y);
+        this.sled = new  Sled(this, this.x, this.y);
+        this.depth = 100;
     }
 
     public move(): void {
@@ -39,6 +43,8 @@ export default class Ship extends Entity {
     private transport(): void {
         this.x += this.speed * Math.cos(this.direction);
         this.y += this.speed * Math.sin(this.direction);
+        this.sled.x += this.speed * Math.cos(this.direction);
+        this.sled.y += this.speed * Math.sin(this.direction);
     }
 
     public speedUp(){
@@ -56,7 +62,10 @@ export default class Ship extends Entity {
     private rotate(): void {
         if (this.turned.is) this.turned.animated = true;
         const dRot = (this.turned.counterClock) ? -0.015 : 0.015;
-        if (this.turned.animated) this.setRotation(this.rotation + dRot);
+        if (this.turned.animated) {
+            this.setRotation(this.rotation + dRot);
+            this.sled.setRotation(this.sled.rotation + 2*dRot);
+        }
         if (this.rotation > 0.09 || this.rotation < -0.09) {
             this.turnNumber += (this.turned.counterClock) ? 1 : -1;
             if (this.turnNumber == -1) this.turnNumber = 31;
@@ -65,6 +74,7 @@ export default class Ship extends Entity {
             this.setRotation(0);
             this.turned.animated = false;
             this.direction += (this.turned.counterClock) ? -.2 : .2;
+            
             if (Math.abs(this.direction) > 3.14) this.direction = -this.direction;
         }
     }

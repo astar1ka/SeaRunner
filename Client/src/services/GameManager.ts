@@ -61,7 +61,6 @@ export default class GameManager{
     }
 
     getShips():TShip[]{
-        console.log(this.captain);
         return this.captain.ships;
     }
 
@@ -77,5 +76,11 @@ export default class GameManager{
         this.socket.exitSettlement();
     }
 
+    setShip(ship: TShip){
+        this.socket.setShip(ship.id);
+    }
     
+    createShip(typeId: number, craft: object){
+
+    }
 }

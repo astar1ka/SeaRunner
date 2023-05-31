@@ -1,0 +1,36 @@
+.header{
+    text-shadow: 0.5vw 0.5vw 0.5vw black;
+    font-size: 3vh;
+    left:5vw;
+    top: 7vh;
+    display: table;
+    position: fixed;
+    color: white;
+    min-width: 60vw;
+    margin: auto;
+    text-align: center;
+    table-layout: fixed;
+}
+
+.button:hover{
+    text-shadow: 1px 1px 1px black;
+}
+
+.active{
+    border-bottom: 0.5vh solid rgb(255, 255, 255);
+    text-shadow: 1px 1px 1px black;
+}
+
+.login{
+    display: table-cell;
+    width: 33%;
+}
+
+.registartion{
+    display: table-cell;
+    width: 33%;
+}
+.about{
+    display: table-cell;
+    width: 33%;
+}

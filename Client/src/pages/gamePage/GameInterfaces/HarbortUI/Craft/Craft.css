@@ -1,0 +1,29 @@
+.craftUI {
+    position: fixed;
+    display: flex;
+    height: 70vh;
+    width: 60vw;
+    top: 10vh;
+    left: 15vw;
+    align-items: center;
+}
+
+.selectCraft{
+    position: relative;
+    display: flex;
+    height: 50vh;
+    width: 20vw;
+    top: 5vh;
+    background-color: bisque;
+    margin-right: 10vw;
+}
+
+.createShip {
+    position: relative;
+    display: flex;
+    height: 10vh;
+    width: 20vw;
+    top: 5vh;
+    background-color: bisque;
+    margin-right: 10vw;
+}

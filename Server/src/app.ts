@@ -42,16 +42,6 @@ const deinitModules = () => {
     db.destructor();
     setTimeout(() => process.exit(), 500);
 }
-const testMiddleware = [
-    (arg: any, next: Function) => {
-        console.log('first');
-        arg.push('123');
-        next(arg);
-    },
-    (arg: any, next: Function) => {
-        console.log('second',next(arg));
-    },
-]
 
 server.listen(PORT, () => console.log('It works with socket!!!'));
 

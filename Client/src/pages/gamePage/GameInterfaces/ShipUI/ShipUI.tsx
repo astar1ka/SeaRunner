@@ -1,12 +1,12 @@
-import useScreen from "../../../../hooks/useScreen/useScreen";
+import boat from '../../../../assets/boat.png'
 
 import './ShipUI.css'
 
 type Ship = {
  attack: number;
  speed: number;
- currentHP: number;
- maxHP: number;
+ currentHp: number;
+ maxHp: number;
 }
 
 type ShipUIProps = {
@@ -16,8 +16,9 @@ type ShipUIProps = {
 export default function ShipUI({ship}:ShipUIProps){
     return (
     <div className='ShipUI'>
+        <img src = {boat}/>
             <h2>Атака: {ship.attack}</h2>
             <h2>Скорость: {ship.speed}</h2>
-            <h2>Прочность: {ship.currentHP}/{ship.maxHP}</h2>
+            <h2>Прочность: {ship.currentHp}/{ship.maxHp}</h2>
     </div>)
 }

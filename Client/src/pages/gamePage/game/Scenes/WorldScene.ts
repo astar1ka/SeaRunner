@@ -3,6 +3,7 @@ import tileMap from "../../../../assets/tileMap.json"
 import spriteMapSheet from '../../../../assets/spriteMap.png'
 import ship from "../../../../assets/ship.png"
 import cannonball from "../../../../assets/cannonBall.webp"
+import sled from "../../../../assets/sled.webp";
 import explosion from "../../../../assets/explosion.webp"
 import Ship from "../Source/Entites/Ship/Ship";
 import ShipControl from "../Source/Control/ShipControl";
@@ -21,6 +22,7 @@ export default class WorldScene extends Phaser.Scene{
         this.load.spritesheet('ship',ship,{frameWidth:256,frameHeight:256});
         this.load.image('cannonball',cannonball);
         this.load.image('explosion',explosion);
+        this.load.image('sled',sled);
     }
 
     create():void{

@@ -1,35 +1,32 @@
 import {useState, useRef} from 'react';
 
 import './HarbortUI.css'
-import ShipDialog from './ShipDialog/ShipDialog';
 import GameManager from '../../../../services/GameManager';
 
-import next from '../../../../source/icons/next.png';
-import prev from '../../../../source/icons/prev.png';
+
+import Header from './header/Header';
+import Collection from './Collection/Collection';
+import Craft from './Craft/Craft';
 
 type TProps ={
     game: GameManager;
 }
 
+function screener(screen: string){
+    if(screen === 'craft') return (game: GameManager)=>Craft({game});
+    if(screen === 'shop') return (game: GameManager)=>Collection({game});
+    return (game: GameManager)=>Collection({game});
+}
+
 export default function HarbortUI({game}: TProps) {
-    const [numberShip, setNumberShip]= useState(0);
 
-    const onClickPrevHandler = () => {
-        if (numberShip>0) setNumberShip(numberShip-1);
-    }
+    const [screen, setScreen] = useState('collection');
 
-    const onClickNextHandler = () => {
-        if (numberShip < game.getShips().length-1) setNumberShip(numberShip+1);
-    }
 
     return (
-    <div className='HarbortUI'>
-    <img className='prevShip' onClick={onClickPrevHandler} src={prev}/>
-    <div className ='ShipDialogBox'>
-    <ShipDialog ship={game.getShips()[numberShip]}/>
-    </div>
-    <img className='nextShip' onClick={onClickNextHandler} src={next}/>
-    <button className='defaultShip' onClick = {() => game.createDefultShip()}></button>
+        <div className='HarbortUI'>
+        <Header setScreen={(screen: string) => setScreen(screen)}/>
+        {screener(screen)(game)}
     </div>
     )
 }

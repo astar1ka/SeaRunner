@@ -22,7 +22,6 @@ export default class Game {
     constructor(private db: DB, private mediator: Mediator) {
         this.EVENTS = this.mediator.getEventsNames();
         this.timer = setInterval(() => this.updater.update());
-        console.log(this.EVENTS);
         this.mediator.subscribe(this.EVENTS.INIT_DATABASE, () => this.init())
     }
 

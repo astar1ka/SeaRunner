@@ -6,12 +6,12 @@ import shipDefault from '../../../../../source/icons/shipDefault.png'
 type Ship = {
     attack: number;
     speed: number;
-    currentHP: number;
-    maxHP: number;
+    currentHp: number;
+    maxHp: number;
    }
 
 type TShipDialogProps = {
-    ship:Ship;
+    ship:Ship | null;
 }
 
 export default function ShipDialog({ship}:TShipDialogProps){
@@ -20,11 +20,12 @@ export default function ShipDialog({ship}:TShipDialogProps){
     return (
     <div className="ShipDialog">
         <ShipUI ship={ship} />
-        <button/>
     </div>
     );
     else
-    return     <div className="ShipDialog">
-    <img className='NoneShip' src={shipDefault}/>
-</div>
+    return ( 
+        <div className="ShipDialog">
+        <img className='NoneShip' src={shipDefault}/>
+        </div>
+    )
 }

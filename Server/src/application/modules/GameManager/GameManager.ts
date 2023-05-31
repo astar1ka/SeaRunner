@@ -17,15 +17,14 @@ export default class GameManager extends Manager {
             ///Получить поселение, в котором сейчас находится капитан///
             this.socket.on(GET_SETTLEMENT, 
                 async (user:User) => this.getSettlement(user), ['auth','answer']);
+                this.socket.on('SET_SHIP', (id: number, user: User) => this.setShip(user, id), ['auth', 'answer'])
             ///Создать дефолтный корабль///
             /*this.socket.on(this.MESSAGES.CREATE_DEFAULT_SHIP, 
                 async (token: string) => 
                 Auth(socket,this.mediator,token,
                     (user:User) => this.createDefaultShip(user)));*/
-            /*this.socket.on(this.MESSAGES.EXIT_SETTLEMENT, 
-                        async (token: string) => 
-                        Auth(socket,this.mediator,token,
-                            (user:User) => this.exitSettlement(user)));*/
+            this.socket.on(this.MESSAGES.EXIT_SETTLEMENT, 
+                        async (user:User) => await this.exitSettlement(user), ['auth', 'answer']);
         this.game = new Game(this.db, this.mediator);
     }
 
@@ -70,7 +69,6 @@ export default class GameManager extends Manager {
 
     public async getCaptain(user:User) {
         const captain = await this.captainByUser(user);
-        console.log(captain);
         if (captain) return ['GET_CAPTAIN', captain.getData()];
         else return ['GET_CAPTAIN', null];
     }
@@ -113,18 +111,22 @@ export default class GameManager extends Manager {
         }     
     }
 
-    /*public async exitSettlement(user: User){
+    public setShip(user: User, id: number){
+        let captain = this.captains.get(user.getId());
+        if (captain){
+            if (captain.setShip(id)) return [
+                'GET_CAPTAIN',
+                captain.getData()
+            ];
+        }
+        return null;
+    }
+
+    public async exitSettlement(user: User){
         const captain = await this.captainByUser(user);
         if (captain) {
             this.game.exitSettlement(captain);
             const captainData = captain.getData();
-            this.io.emit('UPDATE_CAPTAIN',{
-                id: captainData.id,
-                status: captainData.status,
-                ship: captainData.ship,
-                x: captainData.x,
-                y: captainData.y
-            })
         }
-    }*/
+    }
 }

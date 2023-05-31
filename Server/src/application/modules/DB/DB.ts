@@ -109,6 +109,13 @@ export default class DB {
         return this.orm.select('ships_types').run();
     }
 
+    public setActiveShip(captainId: number, shipId: number){
+        return this.orm.update('captains',{
+            shipid: shipId
+        }).where({id: captainId}).run();
+    }
+
+
 
     ////////
     //Chat//

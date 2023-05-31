@@ -94,10 +94,14 @@ export default class IOSocket {
     }
 
     exitSettlement(){
-        if (this.user) this.socket.emit('EXIT_SETTLEMENT');
+        this.socket.emit('EXIT_SETTLEMENT');
     }
 
     onUpdateCaptain(handler: Function){
         this.socket.on('UPDATE_CAPTAIN', (captain: TCaptain) => handler(captain));
+    }
+
+    setShip(id: number){
+        this.socket.emit('SET_SHIP', id);
     }
 }

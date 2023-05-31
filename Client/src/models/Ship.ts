@@ -1,6 +1,7 @@
 export type TShip = {
+    id: number;
     attack: number;
     speed: number;
-    currentHP: number;
-    maxHP: number;
+    currentHp: number;
+    maxHp: number;
    }

@@ -1,0 +1,40 @@
+.collectionUI {
+    position: fixed;
+    height: 80%;
+    width: 70vw;
+    max-width: 70vw;
+    display: flex;
+    align-items: center;
+    left: 5vw
+}
+
+
+.nextShip {
+    position: relative;
+    height: 20vh;
+}
+
+.prevShip {
+    position: relative;
+    height: 20vh;
+}
+
+.ShipDialogBox{
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 50%;
+    height: 50%;
+    justify-content: center;
+}
+
+.setShip{
+    position: fixed;
+    display: flex;
+    top: 80vh;
+    left: 30vw;
+    width: 10vw;
+    height: 5vh;
+    justify-content: center;
+    z-index: 5;
+}

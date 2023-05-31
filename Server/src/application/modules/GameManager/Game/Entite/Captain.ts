@@ -26,6 +26,10 @@ export default class Captain extends ActiveRecord{
             this.rewrite(data);
             await this.loadShips();
             const activeShip = this.ships?.find(ship => ship.id === this.get('shipid'));
+            if (activeShip) {
+                this.ship = new Ship(this.db);
+                this.ship.upload(activeShip);
+            }
             return true;
         }
         else return false;
@@ -37,8 +41,8 @@ export default class Captain extends ActiveRecord{
 
     public getData():TAttributes {
         const result = super.getData();
-        result.ship = (this.ship) ? this.ship.getData() : null;
-        result.ships = this.ships || [];
+        result.ship = (this.ship) ? Ship.format(this.ship.getData()) : null;
+        result.ships = this.ships?.map(ship => Ship.format(ship)) || [];
         return result;
     }
 
@@ -48,7 +52,7 @@ export default class Captain extends ActiveRecord{
     }
 
     public setStatus(status: string){
-        if (status in ['sea', 'town', 'port']){
+        if (status === 'sea' || status === 'town' || status ==='port'){
             this.attributes['status'] = status;
         }
     }
@@ -56,5 +60,14 @@ export default class Captain extends ActiveRecord{
     public setXY(x: number, y: number){
         this.attributes['x'] = x;
         this.attributes['y'] = y;
+    }
+
+    setShip(id: number){
+        console.log(id);
+        const ship = this.ships?.find(ship => ship.id == id);
+        if (ship) {
+            this.db.setActiveShip(this.getId(), id);
+        }
+        return false;
     }
 }

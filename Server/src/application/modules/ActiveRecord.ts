@@ -38,7 +38,6 @@ export default class ActiveRecord {
 
     protected async create(data: object): Promise<boolean> {
         const record = await this.db.addRecord(this.table, { ...data });
-        console.log(data);
         if (record) {
             this.rewrite(record);
             return true;
