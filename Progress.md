@@ -132,7 +132,7 @@
     </tr> 
     <tr>
         <td>8</td>
-        <td></td>
+        <td>В работе</td>
         <td style="color: red">СРОЧНО</td>
         <td>Любовь Овсянникова</td>
         <td>Корабль</td>
@@ -422,14 +422,14 @@
     </tr>
     <tr>
         <td>6</td>
-        <td>В работе</td>
+        <td>Выполнено</td>
         <td style="color: orange">срочность 50%</td>
         <td><a href="https://github.com/perfectowl">Александра Чиркова</td>
         <td>Анимация следа</td>
     </tr>
     <tr>
         <td>7</td>
-        <td>В работе</td>
+        <td>Выполнено</td>
         <td style="color: orange">срочность 50%</td>
         <td><a href="https://github.com/perfectowl">Александра Чиркова</td>
         <td>Тень кита и ее анимация</td>
