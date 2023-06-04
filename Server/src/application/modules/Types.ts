@@ -90,12 +90,6 @@ export type TAuthData = {
 ///////////////////////////
 ////////CAPTAIN////////////
 ///////////////////////////
-export type TCaptainData = {
-    activeShipId?: number | null;
-    posX?: number;
-    posY?: number;
-    direction?: number;
-}
 
 export interface ICaptainData{
     userId: number;
