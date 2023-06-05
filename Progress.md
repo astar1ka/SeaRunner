@@ -30,6 +30,26 @@
         <td><a href="https://github.com/perfectowl">perfectowl</td>
         <td></td>
     </tr>
+    <tr>
+        <td>Овсянникова Любовь</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Суходоева Ксения</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Поздеева Елена</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Ильина Лилия</td>
+        <td></td>
+        <td></td>
+    </tr>
 </table>
 
 *Таблица прогресса исполнения задач
@@ -60,9 +80,9 @@
     </tr>
     <tr>
         <td>2</td>
-        <td>---</td>
+        <td>В работе</td>
         <td style="color: red">СРОЧНО</td>
-        <td>---</td>
+        <td>Елена Поздеева</td>
         <td>Предмет</td>
         <td>Удалить предмет</td>
         <td>Удаляет предмет из таблицы и из связных таблиц</td>
@@ -120,7 +140,7 @@
     </tr> 
     <tr>
         <td>8</td>
-        <td></td>
+        <td>В работе</td>
         <td style="color: red">СРОЧНО</td>
         <td>Любовь Овсянникова</td>
         <td>Корабль</td>
@@ -230,7 +250,7 @@
         <td>17</td>
         <td></td>
         <td style="color: orange">срочность 50%</td>
-        <td>Александра Чиркова</td>
+        <td><a href="https://github.com/perfectowl">Александра Чиркова</td>
         <td>Инвентарь</td>
         <td>Удалить предмет из инвентаря</td>
         <td>Метод активной записи Inventory по удалению предмета из инвентаря по item_id</td>
@@ -254,7 +274,7 @@
         <td>19</td>
         <td></td>
         <td style="color: red">СРОЧНО</td>
-        <td></td>
+        <td>Лилия Ильина</td>
         <td>Инвентарь</td>
         <td>Показать все предметы в инвентаре</td>
         <td>Метод активной записи Inventory, который достает из таблицы items по captain_id через связь из таблицы Inventores</td>
@@ -354,6 +374,13 @@
         <td></td>
         <td>Меню капитана</td>
     </tr>
+    <tr>
+        <td>9</td>
+        <td></td>
+        <td style="color: orange">срочность 50%</td>
+        <td>Ксения Суходоева</td>
+        <td>Экран загрузки</td>
+    </tr>
 </table>
 
 # Дизайн
@@ -370,49 +397,49 @@
         <td>1</td>
         <td>Выполнено</td>
         <td style="color: orange">срочность 50%</td>
-        <td>Александра Чиркова</td>
+        <td><a href="https://github.com/perfectowl">Александра Чиркова</td>
         <td>Стрелки при переключении кораблей</td>
     </tr>
     <tr>
         <td>2</td>
         <td>Выполнено</td>
         <td style="color: orange">срочность 50%</td>
-        <td>Александра Чиркова</td>
+        <td><a href="https://github.com/perfectowl">Александра Чиркова</td>
         <td>Следы от корабля на воде</td>
     </tr>
     <tr>
         <td>3</td>
         <td>Выполнено</td>
         <td style="color: orange">срочность 50%</td>
-        <td>Александра Чиркова</td>
+        <td><a href="https://github.com/perfectowl">Александра Чиркова</td>
         <td>Логотип на главной странице</td>
     </tr>
     <tr>
         <td>4</td>
         <td>Выполнено</td>
         <td style="color: orange">срочность 50%</td>
-        <td>Александра Чиркова</td>
+        <td><a href="https://github.com/perfectowl">Александра Чиркова</td>
         <td>Значок игры на вкладке</td>
     </tr>
     <tr>
         <td>5</td>
         <td>В работе</td>
         <td style="color: orange">срочность 50%</td>
-        <td>Александра Чиркова</td>
+        <td><a href="https://github.com/perfectowl">Александра Чиркова</td>
         <td>Логотип</td>
     </tr>
     <tr>
         <td>6</td>
-        <td>В работе</td>
+        <td>Выполнено</td>
         <td style="color: orange">срочность 50%</td>
-        <td>Александра Чиркова</td>
+        <td><a href="https://github.com/perfectowl">Александра Чиркова</td>
         <td>Анимация следа</td>
     </tr>
     <tr>
         <td>7</td>
-        <td>В работе</td>
+        <td>Выполнено</td>
         <td style="color: orange">срочность 50%</td>
-        <td>Александра Чиркова</td>
+        <td><a href="https://github.com/perfectowl">Александра Чиркова</td>
         <td>Тень кита и ее анимация</td>
     </tr>
 </table>
