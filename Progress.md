@@ -86,24 +86,12 @@
         <td>4</td>
         <td>---</td>
         <td style="color: red">СРОЧНО</td>
-        <td>---</td>
+        <td><a href="https://github.com/astar1ka">Константин Иванов</td>
         <td>Корабль</td>
         <td>Создание корабля</td>
         <td>Метод активной записи Ships для создания корабля в зависимости от используемых ресурсов</td>
         <td>createShip</td>
         <td>item_id, item_id, item_id - id трех предметов типа Паруса, Корпус и Пушки</td>
-        <td>boolean</td>
-    </tr>
-    <tr>
-        <td>5</td>
-        <td>---</td>
-        <td style="color: red">СРОЧНО</td>
-        <td><a href="https://github.com/astar1ka">Константин Иванов</td>
-        <td>Корабль</td>
-        <td>Создание корабля</td>
-        <td>Метод создания дефолтного корабля в активной записи</td>
-        <td>createDefaultShip</td>
-        <td>captain_id: number</td>
         <td>boolean</td>
     </tr>
     <tr>
