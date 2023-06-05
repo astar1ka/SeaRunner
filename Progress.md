@@ -58,6 +58,7 @@
         <th>Номер</th>
         <th>Статус</th>
         <th>Срочность</th>
+        <th>Ветка</th>
         <th>Исполнитель</th>
         <th>Применение</th>
         <th>Что делает</th>
@@ -70,6 +71,7 @@
         <td>1</td>
         <td>В работе</td>
         <td style="color: red">СРОЧНО</td>
+        <td> --- </td>
         <td><a href="https://github.com/1337m3rcy">Андрей Коньков</td>
         <td>Предмет</td>
         <td>Создаёт новый предмет</td>
@@ -82,6 +84,7 @@
         <td>2</td>
         <td>В работе</td>
         <td style="color: red">СРОЧНО</td>
+        <td> --- </td>
         <td>Елена Поздеева</td>
         <td>Предмет</td>
         <td>Удалить предмет</td>
@@ -94,6 +97,7 @@
         <td>3</td>
         <td>---</td>
         <td style="color: red">СРОЧНО</td>
+        <td> --- </td>
         <td>---</td>
         <td>Предмет</td>
         <td>Изменение свойств предмета</td>
@@ -106,6 +110,7 @@
         <td>4</td>
         <td>---</td>
         <td style="color: red">СРОЧНО</td>
+        <td> --- </td>
         <td><a href="https://github.com/astar1ka">Константин Иванов</td>
         <td>Корабль</td>
         <td>Создание корабля</td>
@@ -118,6 +123,7 @@
         <td>6</td>
         <td></td>
         <td style="color: green">не срочно</td>
+        <td> --- </td>
         <td>---</td>        
         <td>Корабль</td>
         <td>Удалить корабль</td>
@@ -130,6 +136,7 @@
         <td>7</td>
         <td></td>
         <td style="color: green">не срочно</td>
+        <td> --- </td>
         <td></td>       
         <td>Корабль</td>
         <td>Поменять владельца</td>
@@ -142,6 +149,7 @@
         <td>8</td>
         <td>В работе</td>
         <td style="color: red">СРОЧНО</td>
+        <td> --- </td>
         <td>Любовь Овсянникова</td>
         <td>Корабль</td>
         <td>Получение урона</td>
@@ -154,6 +162,7 @@
         <td>9</td>
         <td>Готово</td>
         <td style="color: red">СРОЧНО</td>
+        <td> --- </td>
         <td><a href="https://github.com/astar1ka">Константин Иванов</td>
         <td>Капитан</td>
         <td>Смена активного корабля</td>
@@ -166,6 +175,7 @@
         <td>10</td>
         <td>В работе</td>
         <td style="color: orange">срочность 50%</td>
+        <td> --- </td>
         <td><a href="https://github.com/astar1ka">Константин Иванов</td>
         <td>Капитан</td>
         <td>Изменение x и y</td>
@@ -178,6 +188,7 @@
         <td>11</td>
         <td>Готово</td>
         <td style="color: red">СРОЧНО</td>
+        <td> --- </td>
         <td><a href="https://github.com/astar1ka">Константин Иванов</td>
         <td>Капитан</td>
         <td>Смена статуса</td>
@@ -190,6 +201,7 @@
         <td>12</td>
         <td></td>
         <td style="color: red">СРОЧНО</td>
+        <td> --- </td>
         <td></td>
         <td>Рынок</td>
         <td>Покупка предмета</td>
@@ -202,6 +214,7 @@
         <td>13</td>
         <td></td>
         <td style="color: red">СРОЧНО</td>
+        <td> --- </td>
         <td></td>
         <td>Рынок</td>
         <td>Продажа предмета</td>
@@ -214,6 +227,7 @@
         <td>14</td>
         <td></td>
         <td style="color: red">СРОЧНО</td>
+        <td> --- </td>
         <td></td>
         <td>Рынок</td>
         <td>Загрузка товаров</td>
@@ -226,6 +240,7 @@
         <td>15</td>
         <td></td>
         <td style="color: red">СРОЧНО</td>
+        <td> --- </td>
         <td><a href="https://github.com/lisaGoro">Елизавета Городилова</td>
         <td>Инвентарь</td>
         <td>Добавление предмета в инвентарь</td>
@@ -238,6 +253,7 @@
         <td>16</td>
         <td></td>
         <td style="color: green">не срочно</td>
+        <td> --- </td>
         <td></td>
         <td>Инвентарь</td>
         <td>Смена владельца предмета</td>
@@ -250,6 +266,7 @@
         <td>17</td>
         <td></td>
         <td style="color: orange">срочность 50%</td>
+        <td> --- </td>
         <td><a href="https://github.com/perfectowl">Александра Чиркова</td>
         <td>Инвентарь</td>
         <td>Удалить предмет из инвентаря</td>
@@ -262,6 +279,7 @@
         <td>18</td>
         <td></td>
         <td style="color: red">СРОЧНО</td>
+        <td> --- </td>
         <td></td>
         <td>Инвентарь</td>
         <td>Положить на склад/взять со склада</td>
@@ -274,6 +292,7 @@
         <td>19</td>
         <td></td>
         <td style="color: red">СРОЧНО</td>
+        <td> --- </td>
         <td>Лилия Ильина</td>
         <td>Инвентарь</td>
         <td>Показать все предметы в инвентаре</td>
@@ -286,6 +305,7 @@
         <td>20</td>
         <td>В работе</td>
         <td style="color: red">СРОЧНО</td>
+        <td> --- </td>
         <td><a href="https://github.com/dvntcxz">Роман Пак</td>
         <td>Склад</td>
         <td>верстка склада, перемещение предметов</td>
@@ -298,6 +318,7 @@
         <td>21</td>
         <td>В работе</td>
         <td style="color: red">СРОЧНО</td>
+        <td> --- </td>
         <td><a href="https://github.com/dvntcxz">Роман Пак</td>
         <td>Таверна</td>
         <td>верстка таверны, найм команды</td>
