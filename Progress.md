@@ -8,7 +8,7 @@
     <tr>
         <td>Иванов Константин</td>
         <td><a href="https://github.com/astar1ka">astar1ka</td>
-        <td>astar1ka-patch-1, Ivanov-and-pancakes</td>
+        <td><a href="https://github.com/astar1ka/SeaRunner/tree/CREATE_SHIP">CREATE_SHIP</td>
     </tr>
     <tr>
         <td>Коньков Андрей</td>
