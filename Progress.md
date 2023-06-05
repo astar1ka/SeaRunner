@@ -30,6 +30,26 @@
         <td><a href="https://github.com/perfectowl">perfectowl</td>
         <td></td>
     </tr>
+    <tr>
+        <td>Овсянникова Любовь</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Суходоева Ксения</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Поздеева Елена</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Ильина Лилия</td>
+        <td></td>
+        <td></td>
+    </tr>
 </table>
 
 *Таблица прогресса исполнения задач
@@ -266,7 +286,7 @@
         <td>19</td>
         <td></td>
         <td style="color: red">СРОЧНО</td>
-        <td></td>
+        <td>Лилия Ильина</td>
         <td>Инвентарь</td>
         <td>Показать все предметы в инвентаре</td>
         <td>Метод активной записи Inventory, который достает из таблицы items по captain_id через связь из таблицы Inventores</td>
