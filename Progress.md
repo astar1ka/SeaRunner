@@ -132,7 +132,7 @@
     </tr>
     <tr>
         <td>9</td>
-        <td></td>
+        <td<a href="https://github.com/astar1ka">Константин Иванов></td>
         <td style="color: red">СРОЧНО</td>
         <td></td>
         <td>Капитан</td>
@@ -144,7 +144,7 @@
     </tr>
     <tr>
         <td>10</td>
-        <td></td>
+        <td><a href="https://github.com/astar1ka">Константин Иванов</td>
         <td style="color: orange">срочность 50%</td>
         <td></td>
         <td>Капитан</td>
@@ -156,14 +156,14 @@
     </tr>
     <tr>
         <td>11</td>
-        <td></td>
+        <td><a href="https://github.com/astar1ka">Константин Иванов</td>
         <td style="color: red">СРОЧНО</td>
         <td></td>
         <td>Капитан</td>
-        <td>Смена зоны</td>
-        <td>Метод активной записи Captain для смены zone</td>
-        <td>enterInto</td>
-        <td>zone_id: number</td>
+        <td>Смена статуса</td>
+        <td>Метод активной записи Captain для смены status</td>
+        <td>setStatus</td>
+        <td>status: string</td>
         <td>boolean</td>
     </tr>
     <tr>
