@@ -302,7 +302,7 @@
         <td>1</td>
         <td>Готово</td>
         <td style="color: orange">СРОЧНО</td>
-        <td><a href="https://github.com/astar1ka">Константин Иванов></td>
+        <td><a href="https://github.com/astar1ka">Константин Иванов</td>
         <td>Меню города</td>
     </tr>
     <tr>
