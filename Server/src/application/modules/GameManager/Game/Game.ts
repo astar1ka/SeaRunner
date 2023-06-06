@@ -1,6 +1,6 @@
 import Cache from "../../Cache";
 import DB from "../../DB/DB";
-import Mediator from "../../../services/Mediator";
+import Mediator from "../../Mediator";
 import Captain from "./Entite/Captain";
 import Item from "./Entite/Item";
 import Ship from "./Entite/Ship";
@@ -22,6 +22,7 @@ export default class Game {
     constructor(private db: DB, private mediator: Mediator) {
         this.EVENTS = this.mediator.getEventsNames();
         this.timer = setInterval(() => this.updater.update());
+        console.log(this.EVENTS);
         this.mediator.subscribe(this.EVENTS.INIT_DATABASE, () => this.init())
     }
 
@@ -73,9 +74,20 @@ export default class Game {
         return settlement;
     }
 
-    async createItem(ownerId: number, typeId: number) {
-        const item = new Item(typeId, this.db);
+    public async addItem(itemTypeId: number): Promise<boolean> {
+        try {
+          // Создание предмета в соответствии с правилами, основанными на itemTypeId
+          const item = createItemByType(itemTypeId);
+      
+          // Добавление предмета в таблицу Items
+          const result = await this.create.item(item);
+      
+          return result ? true : false;
+        } catch (error) {
+          return false;
+        }
     }
+      
 
     async craftShip(captain: Captain, shipType: number){
         const ship = captain.createShip(this.shipsTypes.get(shipType));

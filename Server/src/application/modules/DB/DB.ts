@@ -94,9 +94,9 @@ export default class DB {
     }
 
     public updateCaptain(userId: number, captain: TCaptainData) {
-        //return this.orm.update('captains', userId, captain);
+        return this.orm.update('captains', captain).where({ id: userId }).run();
     }
-
+      
     ////////////////////////////
     //////////SHIP//////////////
     ////////////////////////////
@@ -108,13 +108,6 @@ export default class DB {
     public getShipsTypes(){
         return this.orm.select('ships_types').run();
     }
-
-    public setActiveShip(captainId: number, shipId: number){
-        return this.orm.update('captains',{
-            shipid: shipId
-        }).where({id: captainId}).run();
-    }
-
 
 
     ////////
@@ -170,15 +163,16 @@ export default class DB {
     /////////////////////////////
 
     public addNewItem(guid: string, typeId: number) {
-        //return this.orm.insert('items', [{ guid, typeId }])
+        return this.orm.insert('items', [{ guid, typeId }])
     }
 
     public getItem(guid: string) {
-        //return this.orm.get('items', { guid });
+        return this.orm.select('items').where({ guid }).run(true);
     }
+      
 
     public addItemTo(ownerId: number, cellNumber: number, guid: string) {
-        //return this.orm.insert('items', [{ ownerId, cellNumber, guid }])
+        return this.orm.insert('items', [{ ownerId, cellNumber, guid }])
     }
 
     public getTypesItems() {
