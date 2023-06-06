@@ -3,7 +3,6 @@ import Mediator from "../Mediator";
 
 export default async function AuthMiddleware(arg: any [], next: Function, socket: Socket, mediator: Mediator){
     if (socket.handshake.auth.token){
-        console.log(socket.handshake.auth.token);
         const user = await mediator.get('GET_USER_BY_TOKEN', [socket.handshake.auth.token]);
         if (user) {
             socket.data.user = user;

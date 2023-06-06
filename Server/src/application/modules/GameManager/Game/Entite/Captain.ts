@@ -28,16 +28,15 @@ export default class Captain extends ActiveRecord {
         ]
     }
 
-    public addCaptain(data: TAttributes) {
-        const { userId, allianceId, shipId, x, y, status } = data;
-        this.create(
+    public async addCaptain(data: TAttributes) {
+        const { userId, allianceId, shipId, x, y } = data;
+        await this.create(
             {
-                user_id: userId,
-                alliance_id: allianceId,
-                ship_idd: shipId,
+                userid: userId,
+                allianceid: allianceId,
+                shipid: shipId,
                 x,
-                y,
-                status
+                y
             }
         );
     }

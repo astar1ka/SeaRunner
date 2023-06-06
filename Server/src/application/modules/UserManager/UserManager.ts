@@ -9,8 +9,8 @@ export default class UserManager extends Manager {
         super(options);
         const { LOG_IN, LOG_OUT, REGISTRATION } = this.MESSAGES;
         //io
-        this.socket.on(LOG_IN, async (login: string, password: string, socket: Socket) => await this.login(login, password, socket), true);
-        this.socket.on(REGISTRATION, (login: string, password: string, name: string, cbRegistration: Function, socket: Socket) => this.registration(socket, login, password, name, cbRegistration));
+        this.socket.on(LOG_IN, async (login: string, password: string, socket: Socket) => await this.login(login, password, socket));
+        this.socket.on(REGISTRATION, (login: string, password: string, name: string, socket: Socket) => this.registration(socket, login, password, name));
         //this.socket.on(LOG_OUT, (token: string, callback: Function, socket: Socket) => Auth(socket, this.mediator, token, (user: User) => this.logout(user, callback)));
         this.socket.on('disconnect', (socket: Socket) => this.disconnect(socket))
         //Mediator Triggers
@@ -46,9 +46,9 @@ export default class UserManager extends Manager {
         return this.users.get(token) || null;
     }
 
-    public async registration(socket: Socket, login: string, password: string, name: string, cbRegistration: Function) {
+    public async registration(socket: Socket, login: string, password: string, name: string) {
         const user = new User(this.db);
-        cbRegistration(await user.registration(login, password, name));
+        await user.registration(login, password, name);
     }
 
     public logout(user: User, callback: Function): void {

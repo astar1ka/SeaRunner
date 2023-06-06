@@ -29,6 +29,7 @@ export default class SocketService implements TSocket{
         io.on('connection', (socket: Socket) => {
             this.handlers.forEach((handler: THandler)=>{
                 socket.on(handler.event, (...arg:any) => {
+                    handler.middlewares.push('answer');
                     const next = useNext(
                         handler.middlewares.map(middleware => this.middlewares[middleware]),
                         handler.handler
@@ -50,24 +51,20 @@ export default class SocketService implements TSocket{
 
     private group(callback: (socket: TSocket) => void, middlewares: string [] = []){
         callback({
-            on: (event: string , handler: Function, answer: boolean = false) => {
+            on: (event: string , handler: Function) => {
                 const handlerMiddleware: string [] = middlewares.filter((a)=> a);
-                if (answer) handlerMiddleware.push('answer');
                 this.addHandler(event, handler, handlerMiddleware);
             }
         });
     }
 
-    public on(event: string , handler: Function, answer: boolean = false): void{
-        this.addHandler(event, handler, (answer) ? ['answer'] : []);
+    public on(event: string , handler: Function): void{
+        this.addHandler(event, handler);
     }
 
     public middleware(middlewares: string [] = []){
         return {
-            on: (event: string , handler: Function, answer: boolean = false) => {
-                if (answer) middlewares.push('answer');
-                this.addHandler(event, handler, middlewares);
-            },
+            on: (event: string , handler: Function) => this.addHandler(event, handler, middlewares),
             group: (callback: (socket: TSocket) => void) => this.group(callback, middlewares)
         }
     }

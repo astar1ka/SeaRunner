@@ -23,7 +23,8 @@ export enum MESSAGES {
     GET_CAPTAIN = 'GET_CAPTAIN',
     ADD_CAPTAIN = 'ADD_CAPTAIN',
     GET_START = 'GET_START',
-    GAME_LOADED = 'GAME_LOADED'
+    GAME_LOADED = 'GAME_LOADED',
+    NEW_GAME = 'NEW_GAME'
 
 }
 
@@ -32,11 +33,11 @@ export default class IOSocket {
     private user: TUser = null;
     constructor(){
         this.socket.on(MESSAGES.LOG_IN, (user: TUser) => mediator.call('UPDATE_USER', user));
-        this.socket.on(MESSAGES.GET_CAPTAIN, (captain: TCaptain) => {
-            console.log(captain);
-            mediator.call('UPDATE_PLAYER', captain);
+        this.socket.on(MESSAGES.GET_CAPTAIN, (captain: TCaptain) => mediator.call('UPDATE_PLAYER', captain));
+        this.socket.on('GET_SETTLEMENT', (settlement: TSettlement) => {
+            console.log(settlement);
+            mediator.call('UPDATE_SETTLEMENT', settlement)
         });
-        this.socket.on('GET_SETTLEMENT', (settlement: TSettlement) => mediator.call('UPDATE_SETTLEMENT', settlement));
     }
 
     public login(login: string, password: string): void {
@@ -81,8 +82,8 @@ export default class IOSocket {
         this.socket.emit(MESSAGES.GET_CAPTAIN);
     }
 
-    public addCaptain(allianceId: number, callback: Function) {
-        if (this.user) this.socket.emit(MESSAGES.ADD_CAPTAIN,  allianceId, callback);
+    public newGame(allianceId: number) {
+        this.socket.emit(MESSAGES.NEW_GAME,  allianceId);
     }
 
     createDefaultShip(){

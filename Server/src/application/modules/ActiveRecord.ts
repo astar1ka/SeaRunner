@@ -42,6 +42,7 @@ export default class ActiveRecord {
             this.rewrite(record);
             return true;
         }
+        
         return false;
     }
 

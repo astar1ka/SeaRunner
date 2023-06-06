@@ -31,13 +31,15 @@ export default class GameManager{
     private getCaptain(captain: TCaptain){
         if (captain){
             this.captain=captain;
+            console.log(captain);
             if (this.captain.status === 'town' || this.captain.status === 'port')
                 this.socket.getSettlement();
         } else this.newGame();
     }
 
     startNewGame(id: number){
-        this.socket.addCaptain(id, (captain: TCaptain) => this.getCaptain(captain))
+        this.socket.newGame(id);
+        this.setStatus('game');
     }
 
     newGame(){

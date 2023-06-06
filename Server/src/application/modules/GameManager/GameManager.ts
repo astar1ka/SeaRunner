@@ -24,11 +24,11 @@ export default class GameManager extends Manager {
         } = this.MESSAGES;
             
             this.socket.middleware(['auth']).group(socket=>{
-                socket.on(GET_GAME_DATA, async (socket: Socket) => this.getGameData(socket.data.user), true);
+                socket.on(GET_GAME_DATA, async (socket: Socket) => this.getGameData(socket.data.user));
                 socket.on(NEW_GAME, async (allianceId: number, socket: Socket) => this.newCaptain(allianceId, socket.data.user), true);
-                socket.on(GET_CAPTAIN, async (socket: Socket) => await this.getCaptain(socket.data.user), true);
+                socket.on(GET_CAPTAIN, async (socket: Socket) => await this.getCaptain(socket.data.user));
                 socket.on(GET_SETTLEMENT, (socket: Socket) => this.getSettlement(socket.data.user));
-                socket.on(CREATE_SHIP, (id: number, socket: Socket) => this.createShip(socket.data.user, id), true);
+                socket.on(CREATE_SHIP, (id: number, socket: Socket) => this.createShip(socket.data.user, id));
                 socket.on(SET_SHIP, (id: number, socket: Socket) => this.setShip(socket.data.user, id));
                 socket.on(EXIT_SETTLEMENT, async (socket: Socket) => await this.exitSettlement(socket.data.user));
             });
@@ -56,13 +56,16 @@ export default class GameManager extends Manager {
     public async newCaptain(allianceId: number, user: User) {
         const captain = new Captain(this.db);
         if (!await captain.getByUserId(user.getId())){
-            captain.addCaptain({userId:user.getId(), 
+            await captain.addCaptain({userId:user.getId(), 
                 allianceId: allianceId,
                 shipId:null, 
                 x: 200, 
                 y: 200});
             this.captains.set(user.getId(), captain);
-            return this.getGameData(user);
+            return [
+                'GET_CAPTAIN',
+                captain.getData()
+            ]
         }
         return [
             'NEW_GAME_ERROR',
