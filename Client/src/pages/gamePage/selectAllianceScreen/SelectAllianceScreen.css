@@ -4,7 +4,7 @@
     height: 90vh;
     left: 5vw;
     top: 5vh;
-    background-color: rgba(105, 91, 21);
+    background-color: rgba(105, 91, 21, 0.7);
     border: 0.2vw solid rgba(255,255,255,0.5);
     box-shadow: 0 0.2vw 0.8vw rgb(0, 0, 0);
     border-radius: 17px;
@@ -18,10 +18,34 @@
     height: 90%;
     left: 5%;
     top: 5%;
-    background-color: rgb(0, 255, 255, 0.6);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
     border: 0.2vw solid rgba(255,255,255,0.5);
     box-shadow: 0 0.2vw 0.8vw rgb(0, 0, 0);
     border-radius: 17px;
     z-index: 100;
     margin-right: 7%;
+}
+
+.alliance1{
+    background-image: url("../../../source/1.jpg");
+}
+
+.alliance2{
+    background-image: url("../../../source/2.jpg");
+}
+
+.alliance3{
+    background-image: url("../../../source/3.jpg");
+}
+
+.nameAlliance{
+    position: relative;
+    display:flexbox;
+    top: 80%;
+    color: white;
+    font-size: 4vw;
+    width: 100%;
+    text-align: center;
 }
