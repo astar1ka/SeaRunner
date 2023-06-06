@@ -1,6 +1,5 @@
 .firstRun {
-    position: relative;
-    
+    position: absolute;
     width: 90vw;
     height: 90vh;
     left: 5vw;

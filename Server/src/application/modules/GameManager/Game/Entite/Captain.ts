@@ -5,6 +5,8 @@ import Ship from "./Ship";
 
 export default class Captain extends ActiveRecord {
 
+    private name!: string;
+
     private ship: Ship | null = null;
 
     private ships: TShips = [];
@@ -26,7 +28,7 @@ export default class Captain extends ActiveRecord {
         ]
     }
 
-    public addCaptain(data: TCaptain) {
+    public addCaptain(data: TAttributes) {
         const { userId, allianceId, shipId, x, y, status } = data;
         this.create(
             {
@@ -59,9 +61,9 @@ export default class Captain extends ActiveRecord {
         this.ships = await this.db.getShips(this.getId());
     }
 
-    public getPlayer(): TPlayer {
-        const result = Captain.format(this.view());
-        result.ship = (this.ship) ? Ship.format(this.ship.view()) : null;
+    public getPlayer(): TAttributes {
+        const result = Captain.format(this.getData());
+        result.ship = (this.ship) ? Ship.format(this.ship.getData()) : null;
         result.ships = this.ships?.map(ship => Ship.format(ship)) || [];
         return result;
     }
@@ -87,15 +89,28 @@ export default class Captain extends ActiveRecord {
         return false;
     }
 
-    static format(data: TAttributes): TCaptain {
+    static format(data: TAttributes): TAttributes {
         const { id, user_id, alliance_id, x, y, status } = data;
         return {
             id,
             userId: user_id,
+            name: this.name,
             allianceId: alliance_id,
             x,
             y,
             status
         }
+    }
+
+    public setShip(id: number): boolean{
+            return true;
+    }
+
+    public setName(name: string){
+        this.name = name;
+    }
+
+    public getShips(){
+        return this.ships.map(ship => Ship.format(ship));
     }
 }

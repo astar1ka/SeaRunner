@@ -11,7 +11,6 @@ export default function Game(props: any){
                 width: 600*scaleWidth,
                 height: 600
             },
-            parent: 'gamePage_window',
             fps: {
                 target: 60,
                 forceSetTimeOut: false

@@ -1,35 +1,38 @@
-import { Socket } from "socket.io";
 import Cache from "../Cache";
 import Manager, { IManager } from "../Manager"
 import Captain from "./Game/Entite/Captain";
 import Game from "./Game/Game";
 import Ship from "./Game/Entite/Ship";
 import User from "../UserManager/User";
+import { Socket } from "socket.io";
 
 export default class GameManager extends Manager {
     private captains = new Cache<Captain>;
     private game;
     constructor(options: IManager) {
         super(options);
-        const {GET_CAPTAIN, GET_SETTLEMENT} = this.MESSAGES;
-            //this.socket.on(this.MESSAGES.ADD_CAPTAIN, async (token: string, allianceId: number, callback: Function) => Auth(socket,this.mediator,token,(user:User) =>this.addCaptain(user,allianceId,callback)));
-            this.socket.on(this.MESSAGES.GET_CAPTAIN, async (user:User) =>this.getCaptain(user), ['auth','answer']);
-            ///Получить поселение, в котором сейчас находится капитан///
-            this.socket.on(GET_SETTLEMENT, 
-                async (user:User) => this.getSettlement(user), ['auth','answer']);
-                this.socket.on('SET_SHIP', (id: number, user: User) => this.setShip(user, id), ['auth', 'answer'])
-            ///Создать дефолтный корабль///
-            /*this.socket.on(this.MESSAGES.CREATE_DEFAULT_SHIP, 
-                async (token: string) => 
-                Auth(socket,this.mediator,token,
-                    (user:User) => this.createDefaultShip(user)));*/
-            this.socket.on(this.MESSAGES.EXIT_SETTLEMENT, 
-                        async (user:User) => await this.exitSettlement(user), ['auth', 'answer']);
+        const {
+            GET_GAME_DATA,
+            GET_CAPTAIN,
+            NEW_GAME,
+            GET_SETTLEMENT,
+            CREATE_SHIP, 
+            SET_SHIP,
+            GET_SHIPS,
+            ENTER_SETTLEMENT,
+            EXIT_SETTLEMENT
+        } = this.MESSAGES;
+            
+            this.socket.middleware(['auth']).group(socket=>{
+                socket.on(GET_GAME_DATA, async (socket: Socket) => this.getGameData(socket.data.user), true);
+                socket.on(NEW_GAME, async (allianceId: number, socket: Socket) => this.newCaptain(allianceId, socket.data.user), true);
+                socket.on(GET_CAPTAIN, async (socket: Socket) => await this.getCaptain(socket.data.user), true);
+                socket.on(GET_SETTLEMENT, (socket: Socket) => this.getSettlement(socket.data.user));
+                socket.on(CREATE_SHIP, (id: number, socket: Socket) => this.createShip(socket.data.user, id), true);
+                socket.on(SET_SHIP, (id: number, socket: Socket) => this.setShip(socket.data.user, id));
+                socket.on(EXIT_SETTLEMENT, async (socket: Socket) => await this.exitSettlement(socket.data.user));
+            });
         this.game = new Game(this.db, this.mediator);
-    }
-
-    public gameLoaded(answer: Function){
-        //answer();
     }
 
     private async captainByUser(user: User): Promise<Captain | null>{
@@ -38,6 +41,7 @@ export default class GameManager extends Manager {
                 captain = new Captain(this.db);
                 if (await captain.getByUserId(user.getId())) {
                     this.captains.set(user.getId(), captain);
+                    captain.setName(user.getData().name);
                 return captain;
                 }
                 return null;
@@ -49,7 +53,7 @@ export default class GameManager extends Manager {
     /////////CAPTAIN////////////
     ////////////////////////////
 
-    public async addCaptain(user:User, allianceId: number, answer: Function) {
+    public async newCaptain(allianceId: number, user: User) {
         const captain = new Captain(this.db);
         if (!await captain.getByUserId(user.getId())){
             captain.addCaptain({userId:user.getId(), 
@@ -57,14 +61,13 @@ export default class GameManager extends Manager {
                 shipId:null, 
                 x: 200, 
                 y: 200});
-                this.captains.set(user.getId(), captain);
-            answer(captain.getData());
+            this.captains.set(user.getId(), captain);
+            return this.getGameData(user);
         }
-            //по айди альянса достаем город из таблицы Town
-            //у города берем координаты в X и Y
-            //создаем нового капиата new Captain(this.db)
-            
-            //добавляем капиатана в таблицу Captain.create(user.getId(), null, X, Y)
+        return [
+            'NEW_GAME_ERROR',
+            'Что-то пошло не так, попробуйте перезайти позже'
+        ]
     }
 
     public async getCaptain(user:User) {
@@ -101,14 +104,22 @@ export default class GameManager extends Manager {
     public getTown(){
     }
 
-    public getGameData(){
-
+    public async getGameData(user:User){
+        let captain = await this.captainByUser(user);
+        return [
+            'GET_GAME_DATA',
+            {
+                captain: captain?.getData() || null,
+            }
+        ]
     }
 
-    public createDefaultShip(user: User){
+    public createShip(user: User, typeShipId: number){
         let captain = this.captains.get(user.getId());
-        if (captain){
-        }     
+        return [
+            'UPDATE_SHIPS',
+            captain
+        ]
     }
 
     public setShip(user: User, id: number){

@@ -38,10 +38,17 @@ const game = new GameManager();
 
 export default function GamePage({setPage}: TProps) {
     const [gameStatus, setGameStatus] = useState('startGame');
+
+    console.log(gameStatus);
+
     useEffect(() => {
-        game.start(setPage,setGameStatus, socket);
-        game.startGame();
-    }, []);
+        game.start(socket);
+        mediator.subscribe('GamePage', 'SET_GAME_STATUS', (status: string) => {
+            console.log(status);
+            setGameStatus(status)
+        });
+        return () => mediator.unsubscribe('GamePage', 'SET_GAME_STATUS');
+    }, [])
 
     return (<Fragment>
         {gameScreen(gameStatus)}

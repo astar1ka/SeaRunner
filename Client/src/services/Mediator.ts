@@ -43,8 +43,9 @@ class Mediator {
 
     public call(name: string, data?: any) {
         if (name && this.events[name]) {
+            console.log(data);
             this.events[name].forEach(event => {
-                if (event instanceof Function) event(data);
+                if (event instanceof Function) (data instanceof Array) ? event(...data) : event(data);
             })
         }
     }
@@ -54,6 +55,7 @@ const events = {
     UPDATE_USER: 'UPDATE_USER',
     UPDATE_PLAYER: 'UPDATE_PLAYER',
     UPDATE_SETTLEMENT: 'UPDATE_SETTLEMENT',
+    SET_GAME_STATUS: 'SET_GAME_STATUS'
 }
 
 const mediator = new Mediator(events, events);

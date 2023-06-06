@@ -33,11 +33,7 @@ export default class GameManager{
             this.captain=captain;
             if (this.captain.status === 'town' || this.captain.status === 'port')
                 this.socket.getSettlement();
-        } else this.newGame()
-    }
-
-    startGame(){
-        this.socket.getCaptain();
+        } else this.newGame();
     }
 
     startNewGame(id: number){
@@ -48,16 +44,17 @@ export default class GameManager{
         this.setStatus('newGame');
     }
 
-    start(exit:Function, setStatus: Function, socket:IOSocket){
+    start(socket:IOSocket){
         this.socket = socket;
-        this.exit = () => exit();
-        this.setStatus = (status: string) => setStatus(status);
+        this.socket.getCaptain();
     }
 
     exit(){
     }
 
     setStatus(status:string){
+        console.log(status);
+        mediator.call('SET_GAME_STATUS', status)
     }
 
     getShips():TShip[]{

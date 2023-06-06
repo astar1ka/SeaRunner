@@ -7,6 +7,7 @@ import Registration from "./registration/Registration";
 import About from "./about/About";
 //css
 import './MainPage.css';
+import mediator from '../../services/Mediator';
 
 type TProps = {
     setPage: Function

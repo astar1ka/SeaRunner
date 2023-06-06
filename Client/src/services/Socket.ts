@@ -34,7 +34,7 @@ export default class IOSocket {
         this.socket.on(MESSAGES.LOG_IN, (user: TUser) => mediator.call('UPDATE_USER', user));
         this.socket.on(MESSAGES.GET_CAPTAIN, (captain: TCaptain) => {
             console.log(captain);
-            mediator.call('UPDATE_PLAYER', captain)
+            mediator.call('UPDATE_PLAYER', captain);
         });
         this.socket.on('GET_SETTLEMENT', (settlement: TSettlement) => mediator.call('UPDATE_SETTLEMENT', settlement));
     }

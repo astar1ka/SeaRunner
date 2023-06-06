@@ -9,7 +9,7 @@ export default class UserManager extends Manager {
         super(options);
         const { LOG_IN, LOG_OUT, REGISTRATION } = this.MESSAGES;
         //io
-        this.socket.on(LOG_IN, async (login: string, password: string, socket: Socket) => await this.login(socket, login, password), ['answer']);
+        this.socket.on(LOG_IN, async (login: string, password: string, socket: Socket) => await this.login(login, password, socket), true);
         this.socket.on(REGISTRATION, (login: string, password: string, name: string, cbRegistration: Function, socket: Socket) => this.registration(socket, login, password, name, cbRegistration));
         //this.socket.on(LOG_OUT, (token: string, callback: Function, socket: Socket) => Auth(socket, this.mediator, token, (user: User) => this.logout(user, callback)));
         this.socket.on('disconnect', (socket: Socket) => this.disconnect(socket))
@@ -20,8 +20,9 @@ export default class UserManager extends Manager {
         //Mediator Events
     }
 
-    private async login(socket: Socket, login: string, password: string) {
+    private async login(login: string, password: string, socket: Socket) {
         const user = new User(this.db);
+        console.log(login,password);
         if (await user.auth(login, password, socket.id)) {
             this.users.set(user.getToken(), user);
             socket.handshake.auth.token = user.getToken();

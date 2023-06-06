@@ -1,6 +1,6 @@
 import { Client } from 'pg';
 import ORM from './ORM';
-import { IUser, TUsers, TShips, IUserData, TMessages, IMessageData, ICaptainData, TCaptainData, ICaptain, TCaptains, TRoom, Tables, TAttributes, TMessage, TBaseShip, TSettlement } from '../Types';
+import { IUser, TUsers, TShips, IUserData, TMessages, IMessageData, ICaptainData, ICaptain, TCaptains, TRoom, Tables, TAttributes, TMessage, TBaseShip, TSettlement } from '../Types';
 
 export default class DB {
     private db: Client | null;
@@ -91,10 +91,6 @@ export default class DB {
 
     public getCaptains() {
         //return this.orm.all('captains').all<TCaptains>();
-    }
-
-    public updateCaptain(userId: number, captain: TCaptainData) {
-        //return this.orm.update('captains', userId, captain);
     }
 
     ////////////////////////////
